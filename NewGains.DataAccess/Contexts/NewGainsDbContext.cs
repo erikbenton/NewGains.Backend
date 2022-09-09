@@ -18,10 +18,10 @@ public class NewGainsDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		SeedData();
+		SeedData(modelBuilder);
 	}
 
-	public static void SeedData()
+	public static void SeedData(ModelBuilder modelBuilder)
 	{
 		var benchPress = new Exercise()
 		{
@@ -38,5 +38,44 @@ public class NewGainsDbContext : DbContext
 			BodyPart = BodyPart.Back,
 			Category = Category.WeightedBodyweight
 		};
-	}
+
+		var squat = new Exercise()
+		{
+			Id = 3,
+			Name = "Squat",
+			BodyPart = BodyPart.Legs,
+			Category = Category.Barbell
+		};
+
+		var overHeadPress = new Exercise()
+		{
+			Id = 4,
+			Name = "Over Head Press",
+			BodyPart = BodyPart.Shoulders,
+			Category = Category.Barbell
+		};
+
+		var bicepCurls = new Exercise()
+		{
+			Id = 5,
+			Name = "Curls",
+			BodyPart = BodyPart.Arms,
+			Category = Category.Dumbbell,
+		};
+
+		var outdoorRunning = new Exercise()
+		{
+			Id = 6,
+			Name = "Outdoor Running",
+			BodyPart = BodyPart.Legs,
+			Category = Category.Cardio
+		};
+
+		var exercises = new List<Exercise>()
+		{
+			benchPress, pullUp, squat, overHeadPress, bicepCurls, outdoorRunning
+		};
+
+		modelBuilder.Entity<Exercise>().HasData(exercises);
+    }
 }
