@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewGains.API", "NewGains.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewGains.Core", "NewGains.Core\NewGains.Core.csproj", "{D43BD03F-178D-4655-810E-04B5F10CBC53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewGains.DataAccess", "NewGains.DataAccess\NewGains.DataAccess.csproj", "{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D43BD03F-178D-4655-810E-04B5F10CBC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D43BD03F-178D-4655-810E-04B5F10CBC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D43BD03F-178D-4655-810E-04B5F10CBC53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
