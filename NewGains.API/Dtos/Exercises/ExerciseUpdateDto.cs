@@ -2,7 +2,7 @@
 
 namespace NewGains.API.Dtos.Exercises;
 
-public record ExerciseDetailsDto
+public record ExerciseUpdateDto
 {
     [Required]
     public int Id { get; init; }
@@ -21,7 +21,7 @@ public record ExerciseDetailsDto
 
     public IEnumerable<InstructionDto>? Instructions { get; init; }
 
-    public ExerciseDetailsDto(
+    public ExerciseUpdateDto(
         int id,
         string name,
         string category,

@@ -1,24 +1,17 @@
-﻿using NewGains.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NewGains.API.Dtos.Exercises;
 
 public record InstructionDto
 {
-    public int Id { get; }
-    public int StepNumber { get; }
-    public string Text { get; }
+    public int? Id { get; init; }
 
-    public InstructionDto(int id, int stepNumber, string text)
+    [Required]
+    public string Text { get; init; }
+
+    public InstructionDto(int? id, string text)
     {
         Id = id;
-        StepNumber = stepNumber;
         Text = text;
-    }
-
-    public InstructionDto(Instruction instruction)
-    {
-        Id = instruction.Id;
-        StepNumber = instruction.StepNumber;
-        Text = instruction.Text;
     }
 }

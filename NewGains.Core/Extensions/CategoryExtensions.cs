@@ -19,7 +19,7 @@ public static class CategoryExtensions
         };
     }
 
-    public static Category GetValue(this string label)
+    public static Category GetCategory(this string label)
     {
         return label switch
         {

@@ -1,32 +1,29 @@
-﻿using NewGains.Core.Entities;
-using NewGains.Core.Enums;
-using NewGains.Core.Extensions;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NewGains.API.Dtos.Exercises;
 
 public record ExerciseDto
 {
-    public int Id { get; }
+    [Required]
+    public int Id { get; init; }
 
-    public string Name { get; }
+    [Required]
+    [StringLength(100)]
+    public string Name { get; init; }
 
-    public string Category { get; }
+    [Required]
+    [StringLength(100)]
+    public string Category { get; init; }
 
-    public string BodyPart { get; }
+    [Required]
+    [StringLength(100)]
+    public string BodyPart { get; init; }
 
-    public ExerciseDto(int id, string name, Category category, BodyPart bodyPart)
+    public ExerciseDto(int id, string name, string category, string bodyPart)
     {
         Id = id;
         Name = name;
-        Category = category.GetLabel();
-        BodyPart = bodyPart.GetLabel();
-    }
-
-    public ExerciseDto(Exercise exercise)
-    {
-        Id = exercise.Id;
-        Name = exercise.Name;
-        Category = exercise.Category.GetLabel();
-        BodyPart = exercise.BodyPart.GetLabel();
+        Category = category;
+        BodyPart = bodyPart;
     }
 }

@@ -2,11 +2,8 @@
 
 namespace NewGains.API.Dtos.Exercises;
 
-public record ExerciseDetailsDto
+public record ExerciseCreateDto
 {
-    [Required]
-    public int Id { get; init; }
-
     [Required]
     [StringLength(100)]
     public string Name { get; init; }
@@ -21,14 +18,12 @@ public record ExerciseDetailsDto
 
     public IEnumerable<InstructionDto>? Instructions { get; init; }
 
-    public ExerciseDetailsDto(
-        int id,
+    public ExerciseCreateDto(
         string name,
         string category,
         string bodyPart,
         IEnumerable<InstructionDto>? instructions)
     {
-        Id = id;
         Name = name;
         Category = category;
         BodyPart = bodyPart;

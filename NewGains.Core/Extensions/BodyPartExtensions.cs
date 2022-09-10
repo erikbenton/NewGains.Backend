@@ -19,7 +19,7 @@ public static class BodyPartExtensions
         };
     }
 
-    public static BodyPart GetValue(this string label)
+    public static BodyPart GetBodyPart(this string label)
     {
         return label switch
         {
