@@ -1,10 +1,9 @@
-﻿using NewGains.Core.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewGains.Core.Entities;
 
-public class Exercise
+public class Template
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,10 +14,8 @@ public class Exercise
     public string Name { get; set; } = string.Empty;
 
     [Required]
-    public Category Category { get; set; }
+    [StringLength(500)]
+    public string? Description { get; set; }
 
-    [Required]
-    public BodyPart BodyPart { get; set; }
-
-    public IEnumerable<Instruction>? Instructions { get; set; }
+    public IEnumerable<TemplateSetGroup>? SetGroups { get; set; }
 }

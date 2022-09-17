@@ -5,6 +5,8 @@ namespace NewGains.Core.Entities;
 
 public class Instruction
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [Required]
@@ -17,5 +19,6 @@ public class Instruction
     public int StepNumber { get; set; }
 
     [Required]
+    [StringLength(500)]
     public string Text { get; set; } = string.Empty;
 }
