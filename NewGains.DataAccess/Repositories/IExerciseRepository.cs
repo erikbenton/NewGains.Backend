@@ -11,4 +11,6 @@ public interface IExerciseRepository
     Task<Exercise> Add(Exercise newExercise);
 
     Task<Exercise> Update(Exercise updatedExercise);
+
+    Task<bool> RemoveExercise(int exerciseId);
 }

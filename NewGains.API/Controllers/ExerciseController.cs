@@ -43,7 +43,8 @@ public class ExerciseController : ControllerBase
 	}
 
 	[HttpPost]
-	public async Task<ActionResult<ExerciseCreateDto>> CreateExercise(
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<ActionResult<ExerciseCreateDto>> CreateExercise(
 		[FromBody] ExerciseCreateDto newDto)
 	{
 		var newExercise = ExerciseMapper.MapToExercise(newDto);
@@ -59,7 +60,9 @@ public class ExerciseController : ControllerBase
 	}
 
 	[HttpPut("{id:int}")]
-	public async Task<ActionResult> UpdateExercise(
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> UpdateExercise(
 		int id,
 		[FromBody] ExerciseUpdateDto updatedDto)
 	{
@@ -75,7 +78,26 @@ public class ExerciseController : ControllerBase
 		{
 			Console.WriteLine(e.Message);
 		}
+		catch
+		{
+            return BadRequest("Error updating with supplied data.");
+        }
 
         return NoContent();
     }
+
+	[HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> DeleteExercise(int id)
+	{
+		if (await exerciseRepository.RemoveExercise(id))
+		{
+			return NoContent();
+		}
+		else
+		{
+			return NotFound($"Unable to find Exercise with Id: {id}.");
+		}
+	}
 }

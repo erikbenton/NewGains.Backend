@@ -16,7 +16,7 @@ public class ExerciseSqlRepository : IExerciseRepository
     public async Task<Exercise> Add(Exercise newExercise)
     {
         context.Exercises.Add(newExercise);
-        
+
         await context.SaveChangesAsync();
 
         return newExercise;
@@ -58,12 +58,25 @@ public class ExerciseSqlRepository : IExerciseRepository
         return updatedExercise;
     }
 
+    public async Task<bool> RemoveExercise(int exerciseId)
+    {
+        var exercise = await context.Exercises.FindAsync(exerciseId);
+
+        if (exercise is null) return false;
+
+        context.Remove(exercise);
+
+        await context.SaveChangesAsync();
+
+        return true;
+    }
+
     private async Task UpdateInstructions(Exercise updatedExercise)
     {
         if (context.Entry(updatedExercise).State != EntityState.Detached)
         {
             throw new ArgumentException(
-                "Exercise must be detached before updating its Instructions.");
+                "Exercise EntityState must be detached before updating its Instructions.");
         }
 
         var savedInstructions = await context.Instructions
