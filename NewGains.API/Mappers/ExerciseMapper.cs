@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.Features;
-using NewGains.API.Dtos.Exercises;
+﻿using NewGains.API.Dtos.Exercises;
 using NewGains.Core.Entities;
-using NewGains.Core.Enums;
 using NewGains.Core.Extensions;
 
 namespace NewGains.API.Mappers;
