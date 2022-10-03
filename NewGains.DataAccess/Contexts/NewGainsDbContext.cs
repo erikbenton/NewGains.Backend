@@ -16,7 +16,13 @@ public class NewGainsDbContext : DbContext
 
     public DbSet<Instruction> Instructions => Set<Instruction>();
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	public DbSet<Template> Templates => Set<Template>();
+
+    public DbSet<TemplateSetGroup> TemplateSetGroups => Set<TemplateSetGroup>();
+
+    public DbSet<TemplateSet> TemplateSets => Set<TemplateSet>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		SeedData(modelBuilder);
 	}
@@ -141,5 +147,100 @@ public class NewGainsDbContext : DbContext
 		modelBuilder.Entity<Exercise>().HasData(exercises);
 		modelBuilder.Entity<Instruction>().HasData(benchPressInstructions);
         modelBuilder.Entity<Instruction>().HasData(pullupInstructions);
+
+        var templateId = 1;
+        var templatePush = new Template()
+        {
+            Id = templateId++,
+            Name = "Push"
+        };
+
+        var templateSetGroupId = 1;
+		var templatePushSetGroup1 = new TemplateSetGroup()
+		{
+			Id = templateSetGroupId++,
+			SetGroupNumber = 1,
+            TemplateId = templatePush.Id,
+			ExerciseId = benchPress.Id
+		};
+
+        var templatePushSetGroup2 = new TemplateSetGroup()
+        {
+            Id = templateSetGroupId++,
+            SetGroupNumber = 2,
+            TemplateId = templatePush.Id,
+            ExerciseId = pullUp.Id
+        };
+
+        var templatePushSetGroup3 = new TemplateSetGroup()
+        {
+            Id = templateSetGroupId++,
+            SetGroupNumber = 3,
+            TemplateId = templatePush.Id,
+            ExerciseId = overHeadPress.Id
+        };
+
+        var templatePushSetGroup4 = new TemplateSetGroup()
+        {
+            Id = templateSetGroupId++,
+            SetGroupNumber = 4,
+            TemplateId = templatePush.Id,
+            ExerciseId = squat.Id
+        };
+
+        var benchSets = new List<TemplateSet>();
+        var pullUpSets = new List<TemplateSet>();
+        var overHeadPressSets = new List<TemplateSet>();
+        var squatSets = new List<TemplateSet>();
+
+        int templateSetId = 1;
+        for (int setNumber = 1; setNumber < 4; setNumber++)
+        {
+            benchSets.Add(
+                new TemplateSet()
+                {
+                    Id = templateSetId++,
+                    SetNumber = setNumber,
+                    ExerciseId = benchPress.Id,
+                    SetGroupId = templatePushSetGroup1.Id
+                });
+
+            pullUpSets.Add(
+                new TemplateSet()
+                {
+                    Id = templateSetId++,
+                    SetNumber = setNumber,
+                    ExerciseId = pullUp.Id,
+                    SetGroupId = templatePushSetGroup2.Id
+                });
+
+            overHeadPressSets.Add(
+                new TemplateSet()
+                {
+                    Id = templateSetId++,
+                    SetNumber = setNumber,
+                    ExerciseId = overHeadPress.Id,
+                    SetGroupId = templatePushSetGroup3.Id
+                });
+
+            squatSets.Add(
+                new TemplateSet()
+                {
+                    Id = templateSetId++,
+                    SetNumber = setNumber,
+                    ExerciseId = squat.Id,
+                    SetGroupId = templatePushSetGroup4.Id
+                });
+        }
+
+        modelBuilder.Entity<TemplateSetGroup>().HasData(templatePushSetGroup1);
+        modelBuilder.Entity<TemplateSetGroup>().HasData(templatePushSetGroup2);
+        modelBuilder.Entity<TemplateSetGroup>().HasData(templatePushSetGroup3);
+        modelBuilder.Entity<TemplateSetGroup>().HasData(templatePushSetGroup4);
+        modelBuilder.Entity<TemplateSet>().HasData(benchSets);
+        modelBuilder.Entity<TemplateSet>().HasData(pullUpSets);
+        modelBuilder.Entity<TemplateSet>().HasData(overHeadPressSets);
+        modelBuilder.Entity<TemplateSet>().HasData(squatSets);
+        modelBuilder.Entity<Template>().HasData(templatePush);
     }
 }

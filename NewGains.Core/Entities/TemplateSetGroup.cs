@@ -13,6 +13,12 @@ public class TemplateSetGroup
     public int SetGroupNumber { get; set; }
 
     [Required]
+    [ForeignKey(nameof(Template))]
+    public int TemplateId { get; set; }
+
+    public Template? Template { get; set; }
+
+    [Required]
     [ForeignKey(nameof(Exercise))]
     public int ExerciseId { get; set; }
 
