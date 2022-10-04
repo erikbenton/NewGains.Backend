@@ -17,6 +17,7 @@ builder.Services.AddDbContext<NewGainsDbContext>(options =>
 });
 
 builder.Services.AddScoped<IExerciseRepository, ExerciseSqlRepository>();
+builder.Services.AddScoped<ITemplatesRepository, TemplatesSqlRepository>();
 
 var app = builder.Build();
 
