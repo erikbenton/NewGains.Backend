@@ -47,10 +47,30 @@ public class TemplatesSqlRepository : ITemplatesRepository
 
     public async Task<Template> AddTemplateAsync(Template newTemplate)
     {
-        context.Templates.Add(newTemplate);
+        try
+        {
+            context.Templates.Add(newTemplate);
+
+            await context.SaveChangesAsync();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+
+        return (await GetTemplateByIdAsync(newTemplate.Id))!;
+    }
+
+    public async Task<bool> RemoveTemplate(int templateId)
+    {
+        var template = await context.Templates.FindAsync(templateId);
+
+        if (template is null) return false;
+
+        context.Remove(template);
 
         await context.SaveChangesAsync();
 
-        return await GetTemplateByIdAsync(newTemplate.Id);
+        return true;
     }
 }

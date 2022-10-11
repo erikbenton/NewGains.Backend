@@ -43,7 +43,7 @@ public class TemplatesController : ControllerBase
 
 	[HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<ActionResult> CreateTemplate([FromBody] TemplateCreateDto newTemplateDto)
+    public async Task<ActionResult<TemplateCreateDto>> CreateTemplate([FromBody] TemplateCreateDto newTemplateDto)
 	{
 		var template = TemplateMapper.MapToTemplate(newTemplateDto);
 
@@ -56,4 +56,19 @@ public class TemplatesController : ControllerBase
             new { id = savedTemplate.Id },
             savedDto);
     }
+
+	[HttpDelete("{templateId:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> DeleteTemplate(int templateId)
+	{
+		if (await templatesRepository.RemoveTemplate(templateId))
+		{
+			return NoContent();
+		}
+		else
+		{
+            return NotFound($"Unable to find Template with Id: {templateId}.");
+        }
+	}
 }
