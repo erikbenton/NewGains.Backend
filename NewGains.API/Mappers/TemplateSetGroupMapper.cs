@@ -15,4 +15,29 @@ public class TemplateSetGroupMapper
 
         return new TemplateSetGroupSummaryDto(exerciseDto, numberOfSets);
     }
+
+    public static TemplateSetGroup MapToSetGroup(TemplateSetGroupCreateDto setGroupCreateDto, Template template)
+    {
+        var templateSetGroup = new TemplateSetGroup()
+        {
+            TemplateId = template.Id,
+            ExerciseId = setGroupCreateDto.ExerciseId,
+            Note = setGroupCreateDto.Note
+        };
+
+        templateSetGroup.Sets = setGroupCreateDto.Sets?
+            .Select(set => TemplateSetMapper.MapToSet(set, templateSetGroup))
+            .ToList();
+
+        if (templateSetGroup.Sets is not null)
+        {
+            int setNumber = 1;
+            foreach (var set in templateSetGroup.Sets)
+            {
+                set.SetNumber = setNumber++;
+            }
+        }
+
+        return templateSetGroup;
+    }
 }

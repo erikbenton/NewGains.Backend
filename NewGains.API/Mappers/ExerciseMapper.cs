@@ -19,6 +19,15 @@ public class ExerciseMapper
             .Select(iDto => InstructionMapper.MapToInstruction(iDto, exercise))
             .ToList();
 
+        if (exercise.Instructions is not null)
+        {
+            int instructionStepNumber = 1;
+            foreach (var instruction in exercise.Instructions)
+            {
+                instruction.StepNumber = instructionStepNumber++;
+            }
+        }
+
         return exercise;
     }
 
@@ -35,6 +44,15 @@ public class ExerciseMapper
         exercise.Instructions = updateDto.Instructions?
             .Select(iDto => InstructionMapper.MapToInstruction(iDto, exercise))
             .ToList();
+
+        if (exercise.Instructions is not null)
+        {
+            int instructionStepNumber = 1;
+            foreach (var instruction in exercise.Instructions)
+            {
+                instruction.StepNumber = instructionStepNumber++;
+            }
+        }
 
         return exercise;
     }

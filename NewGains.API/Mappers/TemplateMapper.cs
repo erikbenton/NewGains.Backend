@@ -15,4 +15,28 @@ public class TemplateMapper
             template.Name,
             setGroupDtos);
     }
+
+    public static Template MapToTemplate(TemplateCreateDto templateCreateDto)
+    {
+        var template = new Template()
+        {
+            Name = templateCreateDto.Name,
+            Description = templateCreateDto.Description,
+        };
+
+        template.SetGroups = templateCreateDto.SetGroups?
+            .Select(setGroup => TemplateSetGroupMapper.MapToSetGroup(setGroup, template))
+            .ToList();
+
+        if (template.SetGroups is not null)
+        {
+            int setGroupNumber = 1;
+            foreach (var setGroup in template.SetGroups)
+            {
+                setGroup.SetGroupNumber = setGroupNumber++;
+            }
+        }
+
+        return template;
+    }
 }
