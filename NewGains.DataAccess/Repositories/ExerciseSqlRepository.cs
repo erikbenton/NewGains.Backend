@@ -88,7 +88,7 @@ public class ExerciseSqlRepository : IExerciseRepository
             : updatedExercise.Instructions;
 
         var deletedInstructions = savedInstructions
-            .Except(updatedInstructions, new InstructionComparer());
+            .Except(updatedInstructions, new IdComparer<Instruction>());
 
         foreach (var instruction in deletedInstructions)
         {
@@ -109,18 +109,5 @@ public class ExerciseSqlRepository : IExerciseRepository
                 context.Entry(instruction).State = EntityState.Added;
             }
         }
-    }
-}
-
-public class InstructionComparer : IEqualityComparer<Instruction>
-{
-    public bool Equals(Instruction? x, Instruction? y)
-    {
-        return x?.Id == y?.Id;
-    }
-
-    public int GetHashCode(Instruction obj)
-    {
-        return obj.Id.GetHashCode();
     }
 }

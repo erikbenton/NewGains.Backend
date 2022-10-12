@@ -36,7 +36,7 @@ public class TemplatesController : ControllerBase
 
 		if (template is null) return NotFound();
 
-		var templateDto = TemplateMapper.MapToTemplateDto(template);
+		var templateDto = TemplateMapper.MapToTemplateDetailsDto(template);
 
 		return Ok(templateDto);
 	}
@@ -55,6 +55,29 @@ public class TemplatesController : ControllerBase
             nameof(GetTemplateById),
             new { id = savedTemplate.Id },
             savedDto);
+    }
+
+	[HttpPut("{templateId:int}")]
+	public async Task<ActionResult<TemplateDto>> UpdateTemplate(int templateId, [FromBody] TemplateUpdateDto updatedTemplateDto)
+	{
+		if (templateId != updatedTemplateDto.Id) return BadRequest("Template ID does not match with request.");
+
+		var updatedTemplate = TemplateMapper.MapToTemplate(updatedTemplateDto);
+
+        try
+        {
+            await templatesRepository.UpdateTemplate(updatedTemplate);
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        catch
+        {
+            return BadRequest("Error updating with supplied data.");
+        }
+
+        return NoContent();
     }
 
 	[HttpDelete("{templateId:int}")]

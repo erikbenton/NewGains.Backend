@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewGains.Core.Entities;
 
-public class Instruction
+public class Instruction : IIdEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

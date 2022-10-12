@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewGains.Core.Entities;
 
-public class Exercise
+public class Exercise : IIdEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

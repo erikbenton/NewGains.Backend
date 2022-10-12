@@ -17,4 +17,28 @@ public class TemplateSetMapper
             Reps = setCreateDto.Reps
         };
     }
+
+    public static TemplateSetDetailsDto MapToSetDetailsDto(TemplateSet templateSet)
+    {
+        return new TemplateSetDetailsDto(
+            templateSet.Id,
+            templateSet.PercentIntensity,
+            templateSet.WeightInPounds,
+            templateSet.TimeInSeconds,
+            templateSet.Reps);
+    }
+
+    public static TemplateSet MapToSet(TemplateSetUpdateDto setUpdateDto, TemplateSetGroup setGroup)
+    {
+        return new TemplateSet()
+        {
+            SetGroupId = setGroup.Id,
+            ExerciseId = setGroup.ExerciseId,
+            Id = setUpdateDto.Id,
+            PercentIntensity = setUpdateDto.PercentIntensity,
+            WeightInPounds = setUpdateDto.WeightInPounds,
+            TimeInSeconds = setUpdateDto.TimeInSeconds,
+            Reps = setUpdateDto.Reps
+        };
+    }
 }

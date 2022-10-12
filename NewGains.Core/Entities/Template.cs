@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewGains.Core.Entities;
 
-public class Template
+public class Template : IIdEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

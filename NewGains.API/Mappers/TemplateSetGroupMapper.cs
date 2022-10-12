@@ -16,7 +16,25 @@ public class TemplateSetGroupMapper
         return new TemplateSetGroupSummaryDto(exerciseDto, numberOfSets);
     }
 
-    public static TemplateSetGroup MapToSetGroup(TemplateSetGroupCreateDto setGroupCreateDto, Template template)
+    public static TemplateSetGroupDetailsDto MatpToSetGroupDetailsDto(TemplateSetGroup setGroup)
+    {
+        if (setGroup.Exercise is null) throw new ArgumentException(nameof(setGroup));
+
+        var exerciseDto = ExerciseMapper.MapToExerciseDto(setGroup.Exercise);
+
+        var setDtos = setGroup.Sets?
+            .Select(set => TemplateSetMapper.MapToSetDetailsDto(set))
+            .ToList();
+
+        return new TemplateSetGroupDetailsDto(
+            setGroup.Id,
+            exerciseDto,
+            setGroup.Note,
+            setDtos);
+    }
+
+    public static TemplateSetGroup MapToSetGroup(
+        TemplateSetGroupCreateDto setGroupCreateDto, Template template)
     {
         var templateSetGroup = new TemplateSetGroup()
         {
@@ -26,6 +44,32 @@ public class TemplateSetGroupMapper
         };
 
         templateSetGroup.Sets = setGroupCreateDto.Sets?
+            .Select(set => TemplateSetMapper.MapToSet(set, templateSetGroup))
+            .ToList();
+
+        if (templateSetGroup.Sets is not null)
+        {
+            int setNumber = 1;
+            foreach (var set in templateSetGroup.Sets)
+            {
+                set.SetNumber = setNumber++;
+            }
+        }
+
+        return templateSetGroup;
+    }
+
+    public static TemplateSetGroup MapToSetGroup(
+        TemplateSetGroupUpdateDto setGroupUpdateDto, Template template)
+    {
+        var templateSetGroup = new TemplateSetGroup()
+        {
+            Id = setGroupUpdateDto.Id,
+            ExerciseId = setGroupUpdateDto.ExerciseId,
+            Note = setGroupUpdateDto.Note
+        };
+
+        templateSetGroup.Sets = setGroupUpdateDto.Sets?
             .Select(set => TemplateSetMapper.MapToSet(set, templateSetGroup))
             .ToList();
 

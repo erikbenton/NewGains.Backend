@@ -8,4 +8,5 @@ public interface ITemplatesRepository
     Task<IEnumerable<Template>> GetAllTemplatesAsync();
     Task<Template?> GetTemplateByIdAsync(int id);
     Task<bool> RemoveTemplate(int templateId);
+    Task<Template> UpdateTemplate(Template updatedTemplate);
 }
