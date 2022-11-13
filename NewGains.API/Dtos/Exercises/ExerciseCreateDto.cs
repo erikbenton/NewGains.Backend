@@ -16,13 +16,14 @@ public record ExerciseCreateDto
     [StringLength(100)]
     public string BodyPart { get; init; }
 
-    public IEnumerable<InstructionDto>? Instructions { get; init; }
+    [Required]
+    public IEnumerable<InstructionDto> Instructions { get; init; } 
 
     public ExerciseCreateDto(
         string name,
         string category,
         string bodyPart,
-        IEnumerable<InstructionDto>? instructions)
+        IEnumerable<InstructionDto> instructions)
     {
         Name = name;
         Category = category;

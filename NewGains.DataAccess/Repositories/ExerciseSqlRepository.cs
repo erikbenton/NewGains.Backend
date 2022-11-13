@@ -30,14 +30,15 @@ public class ExerciseSqlRepository : IExerciseRepository
     public async Task<Exercise?> GetByIdAsync(int id)
     {
         var exercise = await context.Exercises
-            .Include(e => e.Instructions)
+            .Include(e => e.Instructions
+                .OrderBy(i => i.StepNumber))
             .FirstOrDefaultAsync(e => e.Id == id);
 
-        if (exercise is not null)
-        {
-            exercise.Instructions = exercise.Instructions?
-                .OrderBy(i => i.StepNumber);
-        }
+        //if (exercise is not null)
+        //{
+        //    exercise.Instructions = exercise.Instructions
+        //        .OrderBy(i => i.StepNumber);
+        //}
 
         return exercise;
     }

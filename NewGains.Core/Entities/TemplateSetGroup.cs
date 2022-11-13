@@ -27,5 +27,5 @@ public class TemplateSetGroup : IIdEntity
     [StringLength(255)]
     public string? Note { get; set; }
 
-    public IEnumerable<TemplateSet>? Sets { get; set; }
+    public IEnumerable<TemplateSet> Sets { get; set; } = new List<TemplateSet>();
 }

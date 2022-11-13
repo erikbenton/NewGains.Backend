@@ -30,7 +30,7 @@ public class TemplatesController : ControllerBase
 	[HttpGet("{id:int}", Name = nameof(GetTemplateById))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<TemplateDto>> GetTemplateById(int id)
+    public async Task<ActionResult<TemplateDetailsDto>> GetTemplateById(int id)
 	{
 		var template = await templatesRepository.GetTemplateByIdAsync(id);
 
@@ -43,6 +43,7 @@ public class TemplatesController : ControllerBase
 
 	[HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TemplateCreateDto>> CreateTemplate([FromBody] TemplateCreateDto newTemplateDto)
 	{
 		var template = TemplateMapper.MapToTemplate(newTemplateDto);

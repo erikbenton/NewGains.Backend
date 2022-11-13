@@ -7,7 +7,7 @@ public class TemplateMapper
 {
     public static TemplateDto MapToTemplateDto(Template template)
     {
-        var setGroupDtos = template.SetGroups?
+        var setGroupDtos = template.SetGroups
             .Select(group => TemplateSetGroupMapper.MapToSetGroupSummaryDto(group));
 
         return new TemplateDto(
@@ -24,7 +24,7 @@ public class TemplateMapper
             Description = templateCreateDto.Description,
         };
 
-        template.SetGroups = templateCreateDto.SetGroups?
+        template.SetGroups = templateCreateDto.SetGroups
             .Select(setGroup => TemplateSetGroupMapper.MapToSetGroup(setGroup, template))
             .ToList();
 
@@ -42,7 +42,7 @@ public class TemplateMapper
 
     public static TemplateDetailsDto MapToTemplateDetailsDto(Template template)
     {
-        var setGroupDtos = template.SetGroups?
+        var setGroupDtos = template.SetGroups
             .Select(setGroup => TemplateSetGroupMapper.MatpToSetGroupDetailsDto(setGroup));
 
         return new TemplateDetailsDto(
@@ -61,7 +61,7 @@ public class TemplateMapper
             Description = updatedTemplate.Description
         };
 
-        template.SetGroups = updatedTemplate.SetGroups?
+        template.SetGroups = updatedTemplate.SetGroups
             .Select(dto => TemplateSetGroupMapper.MapToSetGroup(dto, template))
             .ToList();
 

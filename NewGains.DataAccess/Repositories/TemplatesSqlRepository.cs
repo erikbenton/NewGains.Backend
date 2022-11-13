@@ -28,19 +28,11 @@ public class TemplatesSqlRepository : ITemplatesRepository
         var template = await context.Templates
             .Include(t => t.SetGroups)
                 .ThenInclude(setGroup => setGroup.Exercise)
-            .Include(t => t.SetGroups)
-                .ThenInclude(setGroup => setGroup.Sets)
+            .Include(t => t.SetGroups
+                .OrderBy(setGroup => setGroup.SetGroupNumber))
+                .ThenInclude(setGroup => setGroup.Sets
+                    .OrderBy(set => set.SetNumber))
             .FirstOrDefaultAsync(t => t.Id == id);
-
-
-        if (template?.SetGroups is not null)
-        {
-            template.SetGroups.OrderBy(setGroup => setGroup.SetGroupNumber);
-            foreach (var setGroup in template.SetGroups)
-            {
-                setGroup.Sets?.OrderBy(set => set.SetNumber);
-            }
-        }
 
         return template;
     }
@@ -109,12 +101,8 @@ public class TemplatesSqlRepository : ITemplatesRepository
             .Where(setGroup => setGroup.TemplateId == updatedTemplate.Id)
             .ToListAsync();
 
-        var updatedSetGroups = updatedTemplate.SetGroups is null
-            ? new List<TemplateSetGroup>()
-            : updatedTemplate.SetGroups;
-
         var deletedInstructions = savedSetGroups
-            .Except(updatedSetGroups, new IdComparer<TemplateSetGroup>());
+            .Except(updatedTemplate.SetGroups, new IdComparer<TemplateSetGroup>());
 
         foreach (var instruction in deletedInstructions)
         {
@@ -122,7 +110,7 @@ public class TemplatesSqlRepository : ITemplatesRepository
         }
 
         int currentGroupNumber = 1;
-        foreach (var setGroup in updatedSetGroups)
+        foreach (var setGroup in updatedTemplate.SetGroups)
         {
             setGroup.SetGroupNumber = currentGroupNumber++;
 
@@ -149,12 +137,8 @@ public class TemplatesSqlRepository : ITemplatesRepository
             .Where(setGroup => setGroup.SetGroupId == updatedSetGroup.Id)
             .ToListAsync();
 
-        var updatedSets = updatedSetGroup.Sets is null
-            ? new List<TemplateSet>()
-            : updatedSetGroup.Sets;
-
         var deletedSets = savedSets
-            .Except(updatedSets, new IdComparer<TemplateSet>());
+            .Except(updatedSetGroup.Sets, new IdComparer<TemplateSet>());
 
         foreach (var set in deletedSets)
         {
@@ -162,7 +146,7 @@ public class TemplatesSqlRepository : ITemplatesRepository
         }
 
         int currentSetNumber = 1;
-        foreach (var setGroup in updatedSets)
+        foreach (var setGroup in updatedSetGroup.Sets)
         {
             setGroup.SetNumber = currentSetNumber++;
 

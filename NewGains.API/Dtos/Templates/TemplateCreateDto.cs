@@ -11,7 +11,8 @@ public record TemplateCreateDto
     [StringLength(500)]
     public string? Description { get; init; }
 
-    public IEnumerable<TemplateSetGroupCreateDto>? SetGroups { get; init; }
+    [Required]
+    public IEnumerable<TemplateSetGroupCreateDto> SetGroups { get; init; }
 
     public TemplateCreateDto(
         string name,

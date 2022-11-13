@@ -7,7 +7,7 @@ namespace NewGains.API.Mappers;
 public class ExerciseMapper
 {
     public static Exercise MapToExercise(ExerciseCreateDto exerciseCreateDto)
-    { 
+    {
         var exercise = new Exercise()
         {
             Name = exerciseCreateDto.Name,
@@ -15,18 +15,11 @@ public class ExerciseMapper
             BodyPart = exerciseCreateDto.BodyPart.GetBodyPart(),
         };
 
-        exercise.Instructions = exerciseCreateDto.Instructions?
+        exercise.Instructions = exerciseCreateDto.Instructions
             .Select(iDto => InstructionMapper.MapToInstruction(iDto, exercise))
             .ToList();
 
-        if (exercise.Instructions is not null)
-        {
-            int instructionStepNumber = 1;
-            foreach (var instruction in exercise.Instructions)
-            {
-                instruction.StepNumber = instructionStepNumber++;
-            }
-        }
+        OrderInstructions(exercise);
 
         return exercise;
     }
@@ -41,18 +34,11 @@ public class ExerciseMapper
             BodyPart = updateDto.BodyPart.GetBodyPart(),
         };
 
-        exercise.Instructions = updateDto.Instructions?
+        exercise.Instructions = updateDto.Instructions
             .Select(iDto => InstructionMapper.MapToInstruction(iDto, exercise))
             .ToList();
 
-        if (exercise.Instructions is not null)
-        {
-            int instructionStepNumber = 1;
-            foreach (var instruction in exercise.Instructions)
-            {
-                instruction.StepNumber = instructionStepNumber++;
-            }
-        }
+        OrderInstructions(exercise);
 
         return exercise;
     }
@@ -69,7 +55,7 @@ public class ExerciseMapper
 
     public static ExerciseDetailsDto MapToExerciseDetailsDto(Exercise exercise)
     {
-        var instructionDtos = exercise.Instructions?
+        var instructionDtos = exercise.Instructions
             .Select(i => InstructionMapper.MapToInstructionDto(i));
 
         return new ExerciseDetailsDto(
@@ -78,5 +64,16 @@ public class ExerciseMapper
             exercise.Category.GetLabel(),
             exercise.BodyPart.GetLabel(),
             instructionDtos);
+    }
+
+    private static void OrderInstructions(Exercise exercise)
+    {
+        if (exercise.Instructions is null) return;
+
+        int instructionStepNumber = 1;
+        foreach (var instruction in exercise.Instructions)
+        {
+            instruction.StepNumber = instructionStepNumber++;
+        }
     }
 }

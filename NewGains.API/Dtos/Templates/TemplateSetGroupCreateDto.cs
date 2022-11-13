@@ -9,12 +9,13 @@ public record TemplateSetGroupCreateDto
     [StringLength(255)]
     public string? Note { get; init; }
 
-    public IEnumerable<TemplateSetCreateDto>? Sets { get; init; }
+    [Required]
+    public IEnumerable<TemplateSetCreateDto> Sets { get; init; }
 
     public TemplateSetGroupCreateDto(
         int exerciseId,
         string? note,
-        IEnumerable<TemplateSetCreateDto>? sets)
+        IEnumerable<TemplateSetCreateDto> sets)
     {
         ExerciseId = exerciseId;
         Note = note;

@@ -34,7 +34,7 @@ public class TemplateSetMapper
         {
             SetGroupId = setGroup.Id,
             ExerciseId = setGroup.ExerciseId,
-            Id = setUpdateDto.Id,
+            Id = setUpdateDto.Id.HasValue ? setUpdateDto.Id.Value : 0,
             PercentIntensity = setUpdateDto.PercentIntensity,
             WeightInPounds = setUpdateDto.WeightInPounds,
             TimeInSeconds = setUpdateDto.TimeInSeconds,

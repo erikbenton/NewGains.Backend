@@ -4,8 +4,7 @@ namespace NewGains.API.Dtos.Templates;
 
 public record TemplateSetUpdateDto
 {
-    [Required]
-    public int Id { get; init; }
+    public int? Id { get; init; }
 
     [Range(0, 100)]
     public double? PercentIntensity { get; init; }
@@ -20,7 +19,7 @@ public record TemplateSetUpdateDto
     public int? Reps { get; init; }
 
     public TemplateSetUpdateDto(
-        int id,
+        int? id,
         double? percentIntensity,
         double? weightInPounds,
         int? timeInSeconds,

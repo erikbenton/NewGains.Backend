@@ -14,13 +14,14 @@ public record TemplateDetailsDto
     [StringLength(500)]
     public string? Description { get; init; }
 
-    public IEnumerable<TemplateSetGroupDetailsDto>? SetGroups { get; init; }
+    [Required]
+    public IEnumerable<TemplateSetGroupDetailsDto> SetGroups { get; init; }
 
     public TemplateDetailsDto(
         int id,
         string name,
         string? description,
-        IEnumerable<TemplateSetGroupDetailsDto>? setGroups)
+        IEnumerable<TemplateSetGroupDetailsDto> setGroups)
     {
         Id = id;
         Name = name;

@@ -16,13 +16,14 @@ public record TemplateSetGroupDetailsDto
     [StringLength(255)]
     public string? Note { get; init; }
 
-    public IEnumerable<TemplateSetDetailsDto>? Sets { get; init; }
+    [Required]
+    public IEnumerable<TemplateSetDetailsDto> Sets { get; init; }
 
     public TemplateSetGroupDetailsDto(
         int id,
         ExerciseDto exercise,
         string? note,
-        IEnumerable<TemplateSetDetailsDto>? sets)
+        IEnumerable<TemplateSetDetailsDto> sets)
     {
         Id = id;
         Exercise = exercise;

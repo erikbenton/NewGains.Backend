@@ -19,14 +19,15 @@ public record ExerciseDetailsDto
     [StringLength(100)]
     public string BodyPart { get; init; }
 
-    public IEnumerable<InstructionDto>? Instructions { get; init; }
+    [Required]
+    public IEnumerable<InstructionDto> Instructions { get; init; }
 
     public ExerciseDetailsDto(
         int id,
         string name,
         string category,
         string bodyPart,
-        IEnumerable<InstructionDto>? instructions)
+        IEnumerable<InstructionDto> instructions)
     {
         Id = id;
         Name = name;

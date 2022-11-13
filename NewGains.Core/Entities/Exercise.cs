@@ -20,5 +20,5 @@ public class Exercise : IIdEntity
     [Required]
     public BodyPart BodyPart { get; set; }
 
-    public IEnumerable<Instruction>? Instructions { get; set; }
+    public IEnumerable<Instruction> Instructions { get; set; } = new List<Instruction>();
 }

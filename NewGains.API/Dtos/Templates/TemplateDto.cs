@@ -11,9 +11,10 @@ public record TemplateDto
     [StringLength(100)]
     public string Name { get; init; } = string.Empty;
 
-    public IEnumerable<TemplateSetGroupSummaryDto>? SetGroups { get; set; }
+    [Required]
+    public IEnumerable<TemplateSetGroupSummaryDto> SetGroups { get; init; }
 
-    public TemplateDto(int id, string name, IEnumerable<TemplateSetGroupSummaryDto>? setGroups)
+    public TemplateDto(int id, string name, IEnumerable<TemplateSetGroupSummaryDto> setGroups)
     {
         Id = id;
         Name = name;

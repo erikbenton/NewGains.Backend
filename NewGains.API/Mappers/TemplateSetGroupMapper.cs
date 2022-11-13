@@ -22,7 +22,7 @@ public class TemplateSetGroupMapper
 
         var exerciseDto = ExerciseMapper.MapToExerciseDto(setGroup.Exercise);
 
-        var setDtos = setGroup.Sets?
+        var setDtos = setGroup.Sets
             .Select(set => TemplateSetMapper.MapToSetDetailsDto(set))
             .ToList();
 
@@ -43,7 +43,7 @@ public class TemplateSetGroupMapper
             Note = setGroupCreateDto.Note
         };
 
-        templateSetGroup.Sets = setGroupCreateDto.Sets?
+        templateSetGroup.Sets = setGroupCreateDto.Sets
             .Select(set => TemplateSetMapper.MapToSet(set, templateSetGroup))
             .ToList();
 
@@ -64,12 +64,13 @@ public class TemplateSetGroupMapper
     {
         var templateSetGroup = new TemplateSetGroup()
         {
-            Id = setGroupUpdateDto.Id,
+            Id = setGroupUpdateDto.Id.HasValue ? setGroupUpdateDto.Id.Value : 0,
+            TemplateId = template.Id,
             ExerciseId = setGroupUpdateDto.ExerciseId,
             Note = setGroupUpdateDto.Note
         };
 
-        templateSetGroup.Sets = setGroupUpdateDto.Sets?
+        templateSetGroup.Sets = setGroupUpdateDto.Sets
             .Select(set => TemplateSetMapper.MapToSet(set, templateSetGroup))
             .ToList();
 
