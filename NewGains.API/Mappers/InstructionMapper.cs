@@ -1,5 +1,5 @@
-﻿using NewGains.API.Dtos.Exercises;
-using NewGains.Core.Entities;
+﻿using NewGains.Core.Entities;
+using NewGains.DataTransfer.Exercises;
 
 namespace NewGains.API.Mappers;
 

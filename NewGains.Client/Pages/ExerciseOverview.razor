@@ -1,0 +1,15 @@
+﻿@page "/exercises"
+
+@if (Exercises is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var exercise in Exercises)
+       {
+           <li>@exercise.Name</li>
+       }
+    </ul>
+}

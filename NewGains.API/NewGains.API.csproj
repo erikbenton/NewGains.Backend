@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NewGains.Client\NewGains.Client.csproj" />
     <ProjectReference Include="..\NewGains.DataAccess\NewGains.DataAccess.csproj" />
+    <ProjectReference Include="..\NewGains.DataTransfer\NewGains.DataTransfer.csproj" />
   </ItemGroup>
 
 </Project>

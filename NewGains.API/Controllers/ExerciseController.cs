@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewGains.API.Dtos.Exercises;
 using NewGains.API.Mappers;
 using NewGains.DataAccess.Repositories;
-using System.Xml.Linq;
+using NewGains.DataTransfer.Exercises;
 
 namespace NewGains.API.Controllers;
 
 [ApiController]
-[Route("exercises")]
+[Route("api/exercises")]
 public class ExerciseController : ControllerBase
 {
 	private readonly IExerciseRepository exerciseRepository;

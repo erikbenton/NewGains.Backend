@@ -1,5 +1,5 @@
-﻿using NewGains.API.Dtos.Templates;
-using NewGains.Core.Entities;
+﻿using NewGains.Core.Entities;
+using NewGains.DataTransfer.Templates;
 
 namespace NewGains.API.Mappers;
 

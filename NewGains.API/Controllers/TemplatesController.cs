@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewGains.API.Dtos.Templates;
 using NewGains.API.Mappers;
 using NewGains.DataAccess.Repositories;
+using NewGains.DataTransfer.Templates;
 
 namespace NewGains.API.Controllers;
 
 [ApiController]
-[Route("templates")]
+[Route("api/templates")]
 public class TemplatesController : ControllerBase
 {
 	private readonly ITemplatesRepository templatesRepository;
