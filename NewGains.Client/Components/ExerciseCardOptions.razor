@@ -1,0 +1,18 @@
+﻿<div class="exercise-card-options">
+    <button class="btn dropdown-toggle exercise-card-options-btn"
+        type="button"
+        id="@($"dropDownBtn{ExerciseId}")"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+    >
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="@($"dropDownBtn{ExerciseId}")">
+        <li class="exercise-option" @onclick="@(() => NavigateToExerciseDetails(ExerciseId))">
+            View
+        </li>
+        <li class="exercise-option">
+            Edit
+        </li>
+    </ul>
+</div>

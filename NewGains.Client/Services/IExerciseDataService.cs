@@ -5,5 +5,6 @@ namespace NewGains.Client.Services
     public interface IExerciseDataService
     {
         Task<IEnumerable<ExerciseDto>?> GetAllExercises();
+        Task<ExerciseDetailsDto?> GetExerciseDetails(int exerciseId);
     }
 }

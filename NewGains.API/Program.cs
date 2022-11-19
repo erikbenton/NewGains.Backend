@@ -21,7 +21,7 @@ builder.Services.AddDbContext<NewGainsDbContext>(options =>
 builder.Services.AddScoped<IExerciseRepository, ExerciseSqlRepository>();
 builder.Services.AddScoped<ITemplatesRepository, TemplatesSqlRepository>();
 
-// Policies
+// Middleware policies
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Open", builder => 

@@ -1,0 +1,8 @@
+﻿<div class="exercise-card">
+    <h6 class="exercise-card-header">
+        <span class="exercise-card-name" @onclick="@(() => NavigateToExerciseDetails(Exercise.Id))">@Exercise.Name</span>
+        <span class="exercise-card-dash">-</span>
+        <span class="exercise-card-category">@Exercise.Category</span>
+        <ExerciseCardOptions ExerciseId="@Exercise.Id" />
+    </h6>
+</div>

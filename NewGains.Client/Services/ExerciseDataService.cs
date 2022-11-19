@@ -20,4 +20,13 @@ public class ExerciseDataService : IExerciseDataService
 
 		return exercises;
 	}
+
+	public async Task<ExerciseDetailsDto?> GetExerciseDetails(int exerciseId)
+	{
+        var exercise = await JsonSerializer.DeserializeAsync<ExerciseDetailsDto>(
+            await client.GetStreamAsync($"api/exercises/{exerciseId}"),
+            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+
+		return exercise;
+    }
 }

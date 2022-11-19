@@ -1,0 +1,79 @@
+﻿.exercises-list, .exercise-card-list {
+    padding: 0;
+    margin: 0;
+}
+
+.exercise-card {
+    margin: 5px auto;
+    width: 83.3333%;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px lightgray solid;
+    padding: 5px;
+}
+
+.exercise-card-header {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-card-name {
+    color: black;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.exercise-card-dash {
+    margin: 0 0.25rem;
+    font-size: 1rem;
+}
+
+.exercise-card-category {
+    font-size: 1rem;
+    display: inline-flex;
+}
+
+.exercise-card-options {
+    margin-left: auto;
+}
+
+.exercise-card-options-btn {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-left: auto;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    color: black;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.exercise-card-options-btn::after {
+    content: none;
+}
+
+.exercise-option {
+    cursor: pointer;
+}
+
+.loading-element {
+    animation-duration: 1s;
+    animation-name: animate-fade;
+    animation-delay: 0.15s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

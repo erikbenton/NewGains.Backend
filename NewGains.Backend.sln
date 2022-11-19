@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewGains.Core", "NewGains.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewGains.DataAccess", "NewGains.DataAccess\NewGains.DataAccess.csproj", "{6E99ACD0-3D54-4933-9D4F-A6DAF92B9F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewGains.Client", "NewGains.Client\NewGains.Client.csproj", "{4C2DBF7F-78F6-4A52-832C-2E9760F85BE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewGains.Client", "NewGains.Client\NewGains.Client.csproj", "{4C2DBF7F-78F6-4A52-832C-2E9760F85BE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewGains.DataTransfer", "NewGains.DataTransfer\NewGains.DataTransfer.csproj", "{B0DE066E-87F6-49C3-9A2D-BCD95B6C3B61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewGains.DataTransfer", "NewGains.DataTransfer\NewGains.DataTransfer.csproj", "{B0DE066E-87F6-49C3-9A2D-BCD95B6C3B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

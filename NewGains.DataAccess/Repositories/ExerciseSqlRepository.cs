@@ -24,7 +24,9 @@ public class ExerciseSqlRepository : IExerciseRepository
 
     public async Task<IEnumerable<Exercise>> GetAllAsync()
     {
-        return await context.Exercises.ToListAsync();
+        return await context.Exercises
+            .OrderBy(exercise => exercise.Name)
+            .ToListAsync();
     }
 
     public async Task<Exercise?> GetByIdAsync(int id)
