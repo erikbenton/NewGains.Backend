@@ -1,9 +1,4 @@
-﻿@*<div>
-    <span>@Instruction.StepNumber</span>
-    <InputTextArea @bind-Value="@Instruction.Text"></InputTextArea>
-</div>*@
-
-<div class="me-auto flex-fill d-flex ps-2">
+﻿<div class="me-auto flex-fill d-flex ps-2">
     <textarea class="flex-fill" @bind-value="@Instruction.Text" @bind-value:event="onchange"></textarea>
 </div>
 <div class="ps-2">
@@ -13,10 +8,4 @@
         ShiftInstructionDown="@ShiftInstructionDown"
         InsertInstructionBelow="@InsertInstructionBelow"
         DeleteInstruction="@DeleteInstruction"/>
-    @*<button
-        class="btn btn-danger"
-        type="button"
-        @onclick=@(async () => await DeleteInstruction.InvokeAsync(Instruction.StepNumber))>
-            <i class="fa-solid fa-trash"></i>
-    </button>*@
 </div>

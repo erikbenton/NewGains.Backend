@@ -1,11 +1,10 @@
-﻿.exercises-list, .exercise-card-list {
+﻿.exercises-list, .exercise-card-list, .instruction-edit-list {
     padding: 0;
     margin: 0;
 }
 
 .exercise-card {
     margin: 5px auto;
-    width: 83.3333%;
     border-radius: 5px;
     background-color: white;
     border: 1px lightgray solid;
@@ -42,7 +41,7 @@
     display: inline-flex;
 }
 
-.exercise-card-options-btn {
+.exercise-card-options-btn, .instruction-card-options-btn {
     width: 1.2rem;
     height: 1.2rem;
     margin-left: auto;
@@ -56,7 +55,7 @@
     align-items: center;
 }
 
-.exercise-card-options-btn::after {
+.exercise-card-options-btn::after, .instruction-card-options-btn::after {
     content: none;
 }
 
