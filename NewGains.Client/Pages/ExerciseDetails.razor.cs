@@ -14,11 +14,19 @@ public partial class ExerciseDetails
 
     public ExerciseDetailsDto? Exercise { get; set; }
 
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = default!;
+
     protected override async Task OnInitializedAsync()
     {
         if (ExerciseId.HasValue)
         {
             Exercise = await ExerciseDataService.GetExerciseDetails(ExerciseId.Value);
         }
+    }
+
+    private void NavigateToExerciseEdit(int exerciseId)
+    {
+        NavigationManager.NavigateTo($"/exercises/edit/{exerciseId}");
     }
 }

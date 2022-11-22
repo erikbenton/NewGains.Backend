@@ -10,6 +10,8 @@
     background-color: white;
     border: 1px lightgray solid;
     padding: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .exercise-card-header {
@@ -37,6 +39,7 @@
 
 .exercise-card-options {
     margin-left: auto;
+    display: inline-flex;
 }
 
 .exercise-card-options-btn {

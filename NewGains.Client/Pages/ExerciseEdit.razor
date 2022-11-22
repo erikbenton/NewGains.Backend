@@ -1,0 +1,83 @@
+﻿@page "/exercises/edit/{ExerciseId:int?}"
+@using NewGains.Client.Components
+@using NewGains.Core.Extensions
+
+<PageTitle>Exercise Edit</PageTitle>
+
+<section>
+
+    <h1>Editing: @OriginalName</h1>
+
+    <EditForm Model="@Exercise" OnValidSubmit="@HandleValidSubmit">
+
+        <div class="row mb-3">
+            <label for="lastName" class="col-form-label col-md-3">Name: </label>
+            <div class="col-md-8">
+                <InputText id="lastName" class="form-control col-md-8" @bind-Value="@Exercise.Name" placeholder="Exercise name"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="country" class="col-form-label col-md-3">Category: </label>
+            <div class="col-md-8">
+                <InputSelect id="country" class="form-select col-md-8" @bind-Value="@Exercise.Category">
+                    @foreach (var category in Categories)
+                    {
+                        <option value="@category">@category.GetLabel()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="country" class="col-form-label col-md-3">Body Part: </label>
+            <div class="col-md-8">
+                <InputSelect id="country" class="form-select col-md-8" @bind-Value="@Exercise.BodyPart">
+                    @foreach (var bodyPart in BodyParts)
+                    {
+                        <option value="@bodyPart">@bodyPart.GetLabel()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Instructions</label>
+            <ol style="paddingLeft: 0;" class="list-group-numbered">
+                @foreach (var instruction in Exercise.Instructions)
+                {       
+                    <li class="list-group-item d-flex pb-2">
+                        <InstructionEditCard
+                            Instruction="@instruction"
+                            ShiftInstructionUp="@ShiftInstructionUp"
+                            ShiftInstructionDown="@ShiftInstructionDown"
+                            InsertInstructionBelow="@InsertInstructionBelow"
+                            DeleteInstruction="@DeleteInstruction"/>
+                    </li>
+                }
+            </ol>
+            <div class="text-center">
+                <button type="button" class="btn btn-success" @onclick="@(() => AddInstruction())">
+                    Add Instruction
+                </button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-1">
+            Save
+        </button>
+
+        @if (ExerciseId.HasValue)
+        {
+            <button type="button" class="btn btn-danger" @onclick="@(() => DeleteExercise(ExerciseId.Value))">
+                Delete
+            </button>
+        }
+
+        <a class="btn btn-light" href="/exercises">
+            Cancel
+        </a>
+
+    </EditForm>
+
+</section>

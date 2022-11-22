@@ -14,4 +14,9 @@ public partial class ExerciseCardOptions
     {
         NavigationManager.NavigateTo($"/exercises/{exerciseId}");
     }
+
+    private void NavigateToExerciseEdit(int exerciseId)
+    {
+        NavigationManager.NavigateTo($"/exercises/edit/{exerciseId}");
+    }
 }

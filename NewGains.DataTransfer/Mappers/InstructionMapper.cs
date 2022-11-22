@@ -1,7 +1,7 @@
 ﻿using NewGains.Core.Entities;
 using NewGains.DataTransfer.Exercises;
 
-namespace NewGains.API.Mappers;
+namespace NewGains.DataTransfer.Mappers;
 
 public class InstructionMapper
 {

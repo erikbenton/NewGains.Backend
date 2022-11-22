@@ -1,0 +1,23 @@
+﻿<div class="instruction-edit-options">
+    <button class="btn dropdown-toggle instruction-card-options-btn"
+            type="button"
+            id="@($"dropDownBtn{StepNumber}")"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="@($"dropDownBtn{StepNumber}")">
+        <li class="instruction-option" @onclick="@(async () => await ShiftInstructionUp.InvokeAsync(StepNumber))">
+            Shift Up
+        </li>
+        <li class="instruction-option" @onclick="@(async () => await ShiftInstructionDown.InvokeAsync(StepNumber))">
+            Shift Down
+        </li>
+        <li class="instruction-option" @onclick="@(async () => await InsertInstructionBelow.InvokeAsync(StepNumber))">
+            Insert Below
+        </li>
+        <li class="instruction-option text-danger" @onclick="@(async () => await DeleteInstruction.InvokeAsync(StepNumber))">
+            Delete
+        </li>
+    </ul>
+</div>

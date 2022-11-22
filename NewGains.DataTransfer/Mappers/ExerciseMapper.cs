@@ -2,7 +2,7 @@
 using NewGains.Core.Extensions;
 using NewGains.DataTransfer.Exercises;
 
-namespace NewGains.API.Mappers;
+namespace NewGains.DataTransfer.Mappers;
 
 public class ExerciseMapper
 {
@@ -43,6 +43,25 @@ public class ExerciseMapper
         return exercise;
     }
 
+    public static Exercise MapToExercise(ExerciseDetailsDto detailsDto)
+    {
+        var exercise = new Exercise()
+        {
+            Id = detailsDto.Id,
+            Name = detailsDto.Name,
+            BodyPart = detailsDto.BodyPart.GetBodyPart(),
+            Category = detailsDto.Category.GetCategory(),
+        };
+
+        exercise.Instructions = detailsDto.Instructions
+            .Select(iDto => InstructionMapper.MapToInstruction(iDto, exercise))
+            .ToList();
+
+        OrderInstructions(exercise);
+
+        return exercise;
+    }
+
     public static ExerciseDto MapToExerciseDto(Exercise exercise)
     {
         return new ExerciseDto(
@@ -59,6 +78,31 @@ public class ExerciseMapper
             .Select(i => InstructionMapper.MapToInstructionDto(i));
 
         return new ExerciseDetailsDto(
+            exercise.Id,
+            exercise.Name,
+            exercise.Category.GetLabel(),
+            exercise.BodyPart.GetLabel(),
+            instructionDtos);
+    }
+
+    public static ExerciseCreateDto MapToExerciseCreateDto(Exercise exercise)
+    {
+        var instructionDtos = exercise.Instructions
+            .Select(i => InstructionMapper.MapToInstructionDto(i));
+
+        return new ExerciseCreateDto(
+            exercise.Name,
+            exercise.Category.GetLabel(),
+            exercise.BodyPart.GetLabel(),
+            instructionDtos);
+    }
+
+    public static ExerciseUpdateDto MapToExerciseUpdateDto(Exercise exercise)
+    {
+        var instructionDtos = exercise.Instructions
+            .Select(i => InstructionMapper.MapToInstructionDto(i));
+
+        return new ExerciseUpdateDto(
             exercise.Id,
             exercise.Name,
             exercise.Category.GetLabel(),

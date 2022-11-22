@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NewGains.API.Mappers;
+using NewGains.DataTransfer.Mappers;
 using NewGains.DataAccess.Repositories;
 using NewGains.DataTransfer.Exercises;
 
-namespace NewGains.API.Controllers;
+namespace NewGains.DataTransfer.Controllers;
 
 [ApiController]
 [Route("api/exercises")]
