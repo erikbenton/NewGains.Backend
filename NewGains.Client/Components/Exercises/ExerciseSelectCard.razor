@@ -1,0 +1,17 @@
+﻿<li class="exercise-select-card">
+    <h6 class="exercise-card-header" @onclick="@(async () => await HandleClick(Exercise))">
+        <span class="exercise-card-name">@Exercise.Name</span>
+        @if (!string.Equals(Exercise.Category, "Bodyweight")
+        && !string.Equals(Exercise.Category, "Cardio"))
+        {
+            <span class="exercise-card-dash">-</span>
+            <span class="exercise-card-category">@Exercise.Category</span>
+        }
+    </h6>
+    @if (IsSelected)
+    {
+        <span class="exercise-selected-indicator">
+            <i class="fa-solid fa-check"></i>
+        </span>
+    }
+</li>

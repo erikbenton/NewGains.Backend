@@ -1,5 +1,5 @@
 ﻿@page "/exercises/edit/{ExerciseId:int?}"
-@using NewGains.Client.Components
+@using NewGains.Client.Components.Exercises
 @using NewGains.Core.Extensions
 
 <PageTitle>Exercise Edit</PageTitle>
@@ -11,16 +11,16 @@
     <EditForm Model="@Exercise" OnValidSubmit="@HandleValidSubmit">
 
         <div class="row mb-3">
-            <label for="lastName" class="col-form-label col-md-3">Name: </label>
+            <label for="exerciseName" class="col-form-label col-md-3">Name: </label>
             <div class="col-md-8">
-                <InputText id="lastName" class="form-control col-md-8" @bind-Value="@Exercise.Name" placeholder="Exercise name"></InputText>
+                <InputText id="exerciseName" class="form-control col-md-8" @bind-Value="@Exercise.Name" placeholder="Exercise name"></InputText>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="country" class="col-form-label col-md-3">Category: </label>
+            <label for="category" class="col-form-label col-md-3">Category: </label>
             <div class="col-md-8">
-                <InputSelect id="country" class="form-select col-md-8" @bind-Value="@Exercise.Category">
+                <InputSelect id="category" class="form-select col-md-8" @bind-Value="@Exercise.Category">
                     @foreach (var category in Categories)
                     {
                         <option value="@category">@category.GetLabel()</option>
@@ -30,9 +30,9 @@
         </div>
 
         <div class="row mb-3">
-            <label for="country" class="col-form-label col-md-3">Body Part: </label>
+            <label for="bodyPart" class="col-form-label col-md-3">Body Part: </label>
             <div class="col-md-8">
-                <InputSelect id="country" class="form-select col-md-8" @bind-Value="@Exercise.BodyPart">
+                <InputSelect id="bodyPart" class="form-select col-md-8" @bind-Value="@Exercise.BodyPart">
                     @foreach (var bodyPart in BodyParts)
                     {
                         <option value="@bodyPart">@bodyPart.GetLabel()</option>

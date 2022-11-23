@@ -1,0 +1,92 @@
+﻿@using NewGains.Core.Extensions
+<div class="set-group-card">
+
+    <div class="set-group-title">
+        <h6 class="set-group-header">
+            @if (SetGroup.Exercise is not null)
+            {
+                <span class="set-group-name">
+                    @SetGroup.Exercise.Name
+                    @if (!string.Equals(SetGroup.Exercise.Category.GetLabel(), "Bodyweight")
+                    && !string.Equals(SetGroup.Exercise.Category.GetLabel(), "Cardio"))
+                    {
+                        <span class="set-group-summary-dash">-</span>
+                        <span class="set-group-summary-category">@SetGroup.Exercise.Category.GetLabel()</span>
+                    }
+                </span>
+            }
+            else
+            {
+                <span class="set-group-name">
+                    Error retrieving Exercise details...
+                </span>
+            }
+        </h6>
+        <div class="set-group-options">
+            <button class="btn dropdown-toggle set-group-options-btn" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item" href="#">Move Exercise Up</a></li>
+                <li><a class="dropdown-item" href="#">Move Exercise Down</a></li>
+                <li>
+                    <button 
+                        class="dropdown-item text-danger"
+                        type="button"
+                        @onclick="@(async () => await RemoveSetGroup.InvokeAsync(SetGroup.SetGroupNumber))">
+                        Delete
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="container sets-data-table">
+
+        <div class="row sets-column-headers">
+            <div class="col-2 step-number-col">
+                <p>
+                    #
+                </p>
+            </div>
+            <div class="col-4 weight-col">
+                <p>
+                    % PR
+                </p>
+            </div>
+            <div class="col-4 reps-time-col">
+                <p>
+                    REPS
+                </p>
+            </div>
+            <div class="col-2 set-options-col">
+            </div>
+        </div>
+
+        @foreach (var set in SetGroup.Sets)
+        {
+            <div class="row set-entry">
+                <div class="col-2 step-number-col">
+                    @set.SetNumber
+                </div>
+                <div class="col-4 weight-col">
+                    <input type="number" class="form-control set-input" @bind-value="@set.PercentIntensity" @bind-value:event="onchange" />
+                </div>
+                <div class="col-4 reps-time-col">
+                    <input type="number" class="form-control set-input" @bind-value="@set.Reps" @bind-value:event="onchange" />
+                </div>
+                <div class="col-2 set-options-col">
+                    <button type="button" class="set-options-btn text-danger" @onclick="@(() => DeleteSet(set.SetNumber))">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    </section>
+
+    <section class="add-set-section">
+        <button type="button" class="add-set-btn" @onclick="@(() => AddEmptySet())">
+            ADD SET
+        </button>
+    </section>
+</div>

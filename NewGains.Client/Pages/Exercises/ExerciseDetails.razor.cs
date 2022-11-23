@@ -2,7 +2,7 @@
 using NewGains.Client.Services;
 using NewGains.DataTransfer.Exercises;
 
-namespace NewGains.Client.Pages;
+namespace NewGains.Client.Pages.Exercises;
 
 public partial class ExerciseDetails
 {

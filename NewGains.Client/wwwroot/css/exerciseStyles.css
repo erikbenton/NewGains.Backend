@@ -63,6 +63,12 @@
     cursor: pointer;
 }
 
+.exercise-select-header {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
 .loading-element {
     animation-duration: 1s;
     animation-name: animate-fade;

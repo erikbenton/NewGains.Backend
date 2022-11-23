@@ -1,5 +1,5 @@
 ﻿@page "/exercises"
-@using NewGains.Client.Components
+@using NewGains.Client.Components.Exercises
 
 <PageTitle>Exercises</PageTitle>
 
@@ -13,7 +13,7 @@ else
 {
     <a class="btn btn-primary" href="/exercises/edit">Add Exercise</a>
     <ol class="exercises-list">
-        @foreach (var exercise in Exercises)
+       @foreach (var exercise in Exercises)
        {
            <ExerciseCard Exercise="@exercise" />
        }

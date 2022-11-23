@@ -1,0 +1,14 @@
+﻿<ol class="set-group-summary-list">
+    @foreach (var setGroup in SetGroups)
+    {
+        <li class="set-group-summary">
+            @setGroup.NumberOfSets x @setGroup.Exercise.Name
+            @if (!string.Equals(setGroup.Exercise.Category, "Bodyweight")
+              && !string.Equals(setGroup.Exercise.Category, "Cardio"))
+            {
+                <span class="set-group-summary-dash">-</span>
+                <span class="set-group-summary-category">@setGroup.Exercise.Category</span>
+            }
+        </li>
+    }
+</ol>

@@ -1,0 +1,21 @@
+﻿
+<button 
+    class="btn btn-primary" 
+    @onclick="@(async () => await AddAllSelectedExercises.InvokeAsync(SelectedExercises))">
+    Done Selecting
+</button>
+<button 
+    class="btn btn-light" 
+    @onclick="@(async () => await CancelSelection.InvokeAsync())">
+    Cancel
+</button>
+
+<ol class="exercise-select-list">
+    @foreach (var exercise in Exercises)
+    {
+        <ExerciseSelectCard
+            Exercise="@exercise" 
+            AddSelectedExercise="@AddSelectedExercise" 
+            RemoveSelectedExercise="@RemoveSelectedExercise" />
+    }
+</ol>

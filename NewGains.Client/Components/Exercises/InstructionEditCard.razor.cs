@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using NewGains.Core.Entities;
 
-namespace NewGains.Client.Components;
+namespace NewGains.Client.Components.Exercises;
 
 public partial class InstructionEditCard
 {

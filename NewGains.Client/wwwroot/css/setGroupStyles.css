@@ -1,0 +1,106 @@
+﻿.set-group-card {
+    margin: 2px auto;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px lightgray solid;
+    padding: 5px;
+}
+
+.set-group-card p {
+    margin: 0;
+}
+
+.set-group-title {
+    margin-bottom: 0;
+}
+
+.set-group-title, .set-group-header {
+    display: flex;
+    margin-bottom: 0;
+}
+
+.set-group-name {
+    color: dodgerblue;
+    font-size: 1.2rem;
+    display: inline-flex;
+}
+
+.set-input {
+    text-align: center;
+}
+
+input.set-input::-webkit-outer-spin-button,
+input.set-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number].set-input {
+    -moz-appearance: textfield;
+}
+
+.set-group-options {
+    margin-left: auto;
+}
+
+.sets-column-headers {
+    font-size: 0.8rem;
+}
+
+.set-group-options-btn {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-left: auto;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.set-group-options-btn::after {
+    content: none;
+}
+
+.step-number-col,
+.weight-col,
+.reps-time-col {
+    text-align: center;
+}
+
+.step-number-col,
+.set-options-col {
+    background-color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weight-col {
+    background-color: white;
+}
+
+.reps-time-col {
+    background-color: white;
+}
+
+.set-options-btn {
+    border: none;
+    background-color: white;
+}
+
+
+.add-set-btn {
+    width: 100%;
+    margin: 2px auto;
+    border: none;
+    background-color: white;
+    color: dodgerblue;
+}
+
+.set-entry {
+    margin-top: .5rem;
+}

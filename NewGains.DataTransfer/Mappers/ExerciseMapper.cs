@@ -43,6 +43,17 @@ public class ExerciseMapper
         return exercise;
     }
 
+    public static Exercise MapToExercise(ExerciseDto exerciseDto)
+    {
+        return new Exercise()
+        {
+            Id = exerciseDto.Id,
+            Name = exerciseDto.Name,
+            Category = exerciseDto.Category.GetCategory(),
+            BodyPart = exerciseDto.BodyPart.GetBodyPart()
+        };
+    }
+
     public static Exercise MapToExercise(ExerciseDetailsDto detailsDto)
     {
         var exercise = new Exercise()

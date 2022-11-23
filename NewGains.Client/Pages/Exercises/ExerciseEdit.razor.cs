@@ -6,7 +6,7 @@ using NewGains.DataTransfer.Exercises;
 using NewGains.DataTransfer.Mappers;
 using System.Net.Http.Json;
 
-namespace NewGains.Client.Pages;
+namespace NewGains.Client.Pages.Exercises;
 
 public partial class ExerciseEdit
 {

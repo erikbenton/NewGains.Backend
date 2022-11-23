@@ -1,0 +1,44 @@
+﻿@page "/templates/edit/{TemplateId:int?}"
+@using NewGains.Client.Components.Exercises
+@using NewGains.Client.Components.Templates
+
+<PageTitle>Template Edit</PageTitle>
+
+@if (SelectingExercises)
+{
+    <ExerciseSelector
+        AddAllSelectedExercises="AddAllSelectedExercises" 
+        CancelSelection="CancelSelection"/>
+}
+else
+{
+    <section>
+        <h1>Editing: @OriginalName</h1>
+
+        <button class="btn btn-primary" type="button" @onclick="@(() => SelectExercises())">Add Exercises</button>
+
+        <EditForm Model="@Template" OnValidSubmit="@HandleValidSubmit">
+
+            <div class="row mb-3">
+                <label for="templateName" class="col-form-label col-md-3">Name: </label>
+                <div class="col-md-8">
+                    <InputText id="templateName" class="form-control col-md-8" @bind-Value="@Template.Name" placeholder="Template name"></InputText>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="templateDescription" class="col-form-label col-md-3">Description: </label>
+                <div class="col-md-8">
+                    <InputTextArea id="templateDescription" class="form-control col-md-8" @bind-Value="@Template.Description" placeholder="Template description"></InputTextArea>
+                </div>
+            </div>
+
+            @foreach (var setGroup in Template.SetGroups)
+            {
+                <TemplateSetGroupEdit SetGroup="@setGroup" RemoveSetGroup="RemoveSetGroup" />
+            }
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </EditForm>
+    </section>
+}

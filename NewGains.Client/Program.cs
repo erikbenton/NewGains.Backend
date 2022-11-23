@@ -10,4 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddHttpClient<IExerciseDataService, ExerciseDataService>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
+builder.Services.AddHttpClient<ITemplateDataService, TemplateDataService>(
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+
 await builder.Build().RunAsync();

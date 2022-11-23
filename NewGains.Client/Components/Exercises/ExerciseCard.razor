@@ -1,4 +1,4 @@
-﻿<div class="exercise-card">
+﻿<li class="exercise-card">
     <h6 class="exercise-card-header">
         <span class="exercise-card-name" @onclick="@(() => NavigateToExerciseDetails(Exercise.Id))">@Exercise.Name</span>
         @if (!string.Equals(Exercise.Category, "Bodyweight")
@@ -9,4 +9,4 @@
         }
     </h6>
     <ExerciseCardOptions ExerciseId="@Exercise.Id" />
-</div>
+</li>

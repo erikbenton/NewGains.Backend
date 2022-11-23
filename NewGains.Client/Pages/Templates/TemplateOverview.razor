@@ -1,0 +1,21 @@
+﻿@page "/templates"
+@using NewGains.Client.Components.Templates
+
+<PageTitle>Workout Templates</PageTitle>
+
+<h1>Templates</h1>
+
+@if (Templates is null)
+{
+    <p class="loading-element"><i class="fa-solid fa-spinner fa-spin"></i></p>
+}
+else
+{
+    <a class="btn btn-primary" href="/templates/edit">Add Template</a>
+    <ol class="templates-list">
+       @foreach (var template in Templates)
+       {
+           <TemplateCard Template="@template" />
+       }
+    </ol>
+}

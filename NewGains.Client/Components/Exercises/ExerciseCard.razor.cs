@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
+using NewGains.DataTransfer.Exercises;
 
-namespace NewGains.Client.Components;
+namespace NewGains.Client.Components.Exercises;
 
-public partial class ExerciseCardOptions
+public partial class ExerciseCard
 {
     [Parameter]
-    public int ExerciseId { get; set; }
+    public ExerciseDto Exercise { get; set; } = default!;
 
     [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
@@ -13,10 +14,5 @@ public partial class ExerciseCardOptions
     private void NavigateToExerciseDetails(int exerciseId)
     {
         NavigationManager.NavigateTo($"/exercises/{exerciseId}");
-    }
-
-    private void NavigateToExerciseEdit(int exerciseId)
-    {
-        NavigationManager.NavigateTo($"/exercises/edit/{exerciseId}");
     }
 }

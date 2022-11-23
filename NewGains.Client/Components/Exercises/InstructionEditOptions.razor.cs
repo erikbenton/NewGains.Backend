@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace NewGains.Client.Components;
+namespace NewGains.Client.Components.Exercises;
 
 public partial class InstructionEditOptions
 {
