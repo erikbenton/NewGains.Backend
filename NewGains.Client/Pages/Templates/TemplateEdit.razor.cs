@@ -58,6 +58,44 @@ public partial class TemplateEdit
         Template.SetGroups = setGroups;
     }
 
+    public void MoveSetGroupDown(int setGroupNumber)
+    {
+        if (setGroupNumber < 1) return;
+        if (setGroupNumber > Template.SetGroups.Count() - 1) return;
+
+        var setGroups = Template.SetGroups.ToArray();
+
+        var tempSetGroup = setGroups[setGroupNumber];
+        setGroups[setGroupNumber] = setGroups[setGroupNumber - 1];
+        setGroups[setGroupNumber - 1] = tempSetGroup;
+
+        for (int i = 0; i < setGroups.Length; i++)
+        {
+            setGroups[i].SetGroupNumber = i + 1;
+        }
+
+        Template.SetGroups = setGroups;
+    }
+
+    public void MoveSetGroupUp(int setGroupNumber)
+    {
+        if (setGroupNumber < 2) return;
+        if (setGroupNumber > Template.SetGroups.Count()) return;
+
+        var setGroups = Template.SetGroups.ToArray();
+
+        var tempSetGroup = setGroups[setGroupNumber - 2];
+        setGroups[setGroupNumber - 2] = setGroups[setGroupNumber - 1];
+        setGroups[setGroupNumber - 1] = tempSetGroup;
+
+        for (int i = 0; i < setGroups.Length; i++)
+        {
+            setGroups[i].SetGroupNumber = i + 1;
+        }
+
+        Template.SetGroups = setGroups;
+    }
+
     public void AddAllSelectedExercises(List<ExerciseDto> selectedExercises)
     {
         // Convert DTOs to Exercise Entities
@@ -92,6 +130,16 @@ public partial class TemplateEdit
     public void CancelSelection()
     {
         SelectingExercises = false;
+    }
+
+    private async Task DeleteTemplate(int templateId)
+    {
+        var deleteResponse = await TemplateDataService.DeleteTemplate(templateId);
+
+        if (deleteResponse.IsSuccessStatusCode)
+        {
+            NavigationManager.NavigateTo("/templates");
+        }
     }
 
     private async Task HandleValidSubmit()

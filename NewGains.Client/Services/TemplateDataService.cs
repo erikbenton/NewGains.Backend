@@ -42,4 +42,9 @@ public class TemplateDataService : ITemplateDataService
     {
         return await client.PutAsJsonAsync($"api/templates/{templateDto.Id}", templateDto);
     }
+
+	public async Task<HttpResponseMessage> DeleteTemplate(int templateId)
+	{
+		return await client.DeleteAsync($"api/templates/{templateId}");
+	}
 }

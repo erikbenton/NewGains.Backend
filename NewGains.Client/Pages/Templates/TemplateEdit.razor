@@ -4,7 +4,11 @@
 
 <PageTitle>Template Edit</PageTitle>
 
-@if (SelectingExercises)
+@if (TemplateId.HasValue && Template.Id == 0)
+{
+    <p class="loading-element"><i class="fa-solid fa-spinner fa-spin"></i></p>
+}
+else if (SelectingExercises)
 {
     <ExerciseSelector
         AddAllSelectedExercises="AddAllSelectedExercises" 
@@ -35,10 +39,27 @@ else
 
             @foreach (var setGroup in Template.SetGroups)
             {
-                <TemplateSetGroupEdit SetGroup="@setGroup" RemoveSetGroup="RemoveSetGroup" />
+                <TemplateSetGroupEdit 
+                    SetGroup="setGroup" 
+                    RemoveSetGroup="RemoveSetGroup" 
+                    MoveSetGroupDown="MoveSetGroupDown" 
+                    MoveSetGroupUp="MoveSetGroupUp" />
             }
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+
+            @if (TemplateId.HasValue)
+            {
+                <button type="button" class="btn btn-danger" @onclick="@(() => DeleteTemplate(TemplateId.Value))">
+                    Delete
+                </button>
+            }
+
+            <a class="btn btn-light" href="/templates">
+                Cancel
+            </a>
         </EditForm>
     </section>
 }

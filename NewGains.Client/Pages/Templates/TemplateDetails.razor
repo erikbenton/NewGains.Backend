@@ -1,0 +1,34 @@
+﻿@page "/templates/{TemplateId:int}"
+@using NewGains.Client.Components.Templates
+
+
+@if (Template is null)
+{
+    <p class="loading-element"><i class="fa-solid fa-spinner fa-spin"></i></p>
+}
+else
+{
+    <section>
+        <h1>@Template.Name</h1>
+
+            <div class="row mb-3">
+                <label for="templateName" class="col-md-3">Description: </label>
+                <div class="col-md-8">
+                    <p>@Template.Description</p>
+                </div>
+            </div>
+
+            @foreach (var setGroup in Template.SetGroups)
+            {
+                <SetGroupDetails SetGroup="setGroup" />
+            }
+
+            <a class="btn btn-primary" href="@($"/templates/edit/{TemplateId}")">
+                Edit
+            </a>
+
+            <a class="btn btn-light" href="/templates">
+                Back
+            </a>
+    </section>
+}

@@ -1,5 +1,4 @@
 ﻿@using NewGains.Client.Enums
-@using NewGains.Core.Extensions
 @using NewGains.Client.Extensions
 <div class="set-group-card">
 
@@ -9,11 +8,11 @@
             {
                 <span class="set-group-name">
                     @SetGroup.Exercise.Name
-                    @if (!string.Equals(SetGroup.Exercise.Category.GetLabel(), "Bodyweight")
-                    && !string.Equals(SetGroup.Exercise.Category.GetLabel(), "Cardio"))
+                    @if (!string.Equals(SetGroup.Exercise.Category, "Bodyweight")
+                   && !string.Equals(SetGroup.Exercise.Category, "Cardio"))
                     {
                         <span class="set-group-summary-dash">-</span>
-                        <span class="set-group-summary-category">@SetGroup.Exercise.Category.GetLabel()</span>
+                        <span class="set-group-summary-category">@SetGroup.Exercise.Category</span>
                     }
                 </span>
             }
@@ -24,16 +23,13 @@
                 </span>
             }
         </h6>
-        <SetGroupEditOptions 
-            SetGroupNumber="SetGroup.SetGroupNumber" 
-            MoveSetGroupDown="MoveSetGroupDown" 
-            MoveSetGroupUp="MoveSetGroupUp" 
-            RemoveSetGroup="RemoveSetGroup" />
     </div>
 
     <section class="container sets-data-table">
 
         <div class="row sets-column-headers">
+            <div class="col-1">
+            </div>
             <div class="col-2 step-number-col">
                 <p>
                     #
@@ -88,19 +84,17 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-2 set-options-col">
+            <div class="col-1">
             </div>
         </div>
 
+        @{
+            SetNumber = 1;
+        }
         @foreach (var set in SetGroup.Sets)
         {
-            <SetRowEdit Set="set" DeleteSet="DeleteSet" WeightUnit="WeightUnit" RepsTimeUnit="RepsTimeUnit" />
+            <SetRowDetails Set="set" SetNumber="SetNumber" WeightUnit="WeightUnit" RepsTimeUnit="RepsTimeUnit" />
+            SetNumber++;
         }
-    </section>
-
-    <section class="add-set-section">
-        <button type="button" class="add-set-btn" @onclick="@(() => AddEmptySet())">
-            ADD SET
-        </button>
     </section>
 </div>

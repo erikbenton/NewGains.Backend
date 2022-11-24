@@ -19,11 +19,15 @@ public partial class ExerciseSelector
 
     public List<ExerciseDto> SelectedExercises { get; set; } = new();
 
+    public bool IsLoading { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
         var exercises = await ExerciseDataService.GetAllExercises();
 
         Exercises = exercises ?? new List<ExerciseDto>();
+
+        IsLoading = false;
     }
 
     public void AddSelectedExercise(ExerciseDto exercise)

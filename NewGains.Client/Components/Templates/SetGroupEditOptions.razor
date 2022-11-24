@@ -1,0 +1,28 @@
+﻿<div class="set-group-options">
+    <button class="btn dropdown-toggle set-group-options-btn" type="button" id="@($"setGroupOptionsButton{SetGroupNumber}")" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="@($"setGroupOptionsButton{SetGroupNumber}")">
+        <li>
+            <button type="button"
+                    class="dropdown-item"
+                    @onclick="@(async () => await MoveSetGroupUp.InvokeAsync(SetGroupNumber))">
+                Move Group Up
+            </button>
+        </li>
+        <li>
+            <button type="button"
+                    class="dropdown-item"
+                    @onclick="@(async () => await MoveSetGroupDown.InvokeAsync(SetGroupNumber))">
+                Move Group Down
+            </button>
+        </li>
+        <li>
+            <button class="dropdown-item text-danger"
+                    type="button"
+                    @onclick="@(async () => await RemoveSetGroup.InvokeAsync(SetGroupNumber))">
+                Delete
+            </button>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,40 @@
+﻿@using NewGains.Client.Enums
+<div class="row set-entry">
+    <div class="col-2 step-number-col">
+        @Set.SetNumber
+    </div>
+    <div class="col-4 weight-col">
+        @switch (WeightUnit)
+        {
+            case SetUnits.PercentIntensity:
+                <input type="number" class="form-control set-input" step="any" @bind-value="@Set.PercentIntensity" @bind-value:event="onchange" />
+                break;
+            case SetUnits.Lbs:
+                <input type="number" class="form-control set-input" step="any" @bind-value="@WeightInLbs" @bind-value:event="onchange" />
+                break;
+            case SetUnits.Kg:
+                <input type="number" class="form-control set-input" step="any" @bind-value="@WeightInKg" @bind-value:event="onchange" />
+                break;
+            default:
+                break;
+        }
+    </div>
+    <div class="col-4 reps-time-col">
+        @switch (RepsTimeUnit)
+        {
+            case SetUnits.Reps:
+                <input type="number" class="form-control set-input" @bind-value="@Set.Reps" @bind-value:event="onchange" />
+                break;
+            case SetUnits.Time:
+                <input type="number" class="form-control set-input" @bind-value="@Set.TimeInSeconds" @bind-value:event="onchange" />
+                break;
+            default:
+                break;
+        }
+    </div>
+    <div class="col-2 set-options-col">
+        <button type="button" class="set-options-btn text-danger" @onclick="@(async () => await DeleteSet.InvokeAsync(Set.SetNumber))">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+</div>

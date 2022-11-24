@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using NewGains.Client.Enums;
 using NewGains.Core.Entities;
 
 namespace NewGains.Client.Components.Templates;
@@ -11,6 +12,34 @@ public partial class TemplateSetGroupEdit
     [Parameter]
     public EventCallback<int> RemoveSetGroup { get; set; }
 
+    [Parameter]
+    public EventCallback<int> MoveSetGroupUp { get; set; }
+    
+    [Parameter]
+    public EventCallback<int> MoveSetGroupDown { get; set; }
+
+    public SetUnits WeightUnit { get; set; } = SetUnits.PercentIntensity;
+
+    public SetUnits RepsTimeUnit { get; set; } = SetUnits.Reps;
+
+    private void SetWeightUnit(SetUnits weightUnit)
+    {
+        if (weightUnit == SetUnits.Time || weightUnit == SetUnits.Reps)
+            return;
+
+        WeightUnit = weightUnit;
+        StateHasChanged();
+    }
+
+    private void SetRepsTimeUnit(SetUnits repsTimeUnit)
+    {
+        if (repsTimeUnit != SetUnits.Time && repsTimeUnit != SetUnits.Reps)
+            return;
+
+        RepsTimeUnit = repsTimeUnit;
+        StateHasChanged();
+    }
+
     private void AddEmptySet()
     {
         var newSets = SetGroup.Sets.ToList();
@@ -20,6 +49,7 @@ public partial class TemplateSetGroupEdit
             ExerciseId = SetGroup.Exercise!.Id,
             SetNumber = newSets.Count + 1,
         });
+
         SetGroup.Sets = newSets;
     }
 
