@@ -1,0 +1,157 @@
+﻿@using NewGains.Client.Enums
+@using NewGains.Client.Extensions
+@using NewGains.Core.Enums
+
+<div class="set-group-card">
+
+    <div class="set-group-title">
+        <h6 class="set-group-header">
+            @if (SetGroup.Exercise is not null)
+            {
+                <span class="set-group-name">
+                    @SetGroup.Exercise.Name
+                    @if (SetGroup.Exercise.Category != Category.WeightedBodyweight
+                      && SetGroup.Exercise.Category != Category.Cardio)
+                    {
+                        <span class="set-group-summary-dash">-</span>
+                        <span class="set-group-summary-category">@SetGroup.Exercise.Category</span>
+                    }
+                </span>
+            }
+            else
+            {
+                <span class="set-group-name">
+                    Error retrieving Exercise details...
+                </span>
+            }
+        </h6>
+    </div>
+
+    <section class="container sets-data-table">
+
+        <div class="row sets-column-headers">
+            <div class="col-1 step-number-col">
+                <p>
+                    #
+                </p>
+            </div>
+            <div class="col-4 weight-col target-col">
+                <span class="weight-target-choice">
+                    <button class="btn dropdown-toggle target-col-option" type="button" id="@($"targetWeightMenuButton{SetGroup.SetGroupNumber}")" data-bs-toggle="dropdown" aria-expanded="false">
+                        @TargetWeightUnit.GetLabel()
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="@($"targetWeightMenuButton{SetGroup.SetGroupNumber}")">
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item"
+                                    @onclick="@(() => SetTargetWeightUnit(SetUnits.PercentIntensity))">
+                                % PR
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item"
+                                    @onclick="@(() => SetTargetWeightUnit(SetUnits.Lbs))">
+                                lbs
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item"
+                                    type="button"
+                                    @onclick="@(() => SetTargetWeightUnit(SetUnits.Kg))">
+                                kg
+                            </button>
+                        </li>
+                    </ul>
+                </span>
+                <span class="reps-time-target-choice">
+                    <button class="btn dropdown-toggle target-col-option" type="button" id="@($"targetRepsTimeMenuButton{SetGroup.SetGroupNumber}")" data-bs-toggle="dropdown" aria-expanded="false">
+                        @TargetRepsTimeUnit.GetLabel()
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="@($"targetRepsTimeMenuButton{SetGroup.SetGroupNumber}")">
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item"
+                                    @onclick="@(() => SetTargetRepsTimeUnit(SetUnits.Reps))">
+                                Reps
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item"
+                                    @onclick="@(() => SetTargetRepsTimeUnit(SetUnits.Time))">
+                                Time
+                            </button>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+            <div class="col-3 weight-col">
+                <button class="btn dropdown-toggle" type="button" id="@($"weightMenuButton{SetGroup.SetGroupNumber}")" data-bs-toggle="dropdown" aria-expanded="false">
+                    @WeightUnit.GetLabel()
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="@($"weightMenuButton{SetGroup.SetGroupNumber}")">
+                    <li>
+                        <button type="button"
+                                class="dropdown-item"
+                                @onclick="@(() => SetWeightUnit(SetUnits.PercentIntensity))">
+                            % PR
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button"
+                                class="dropdown-item"
+                                @onclick="@(() => SetWeightUnit(SetUnits.Lbs))">
+                            lbs
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item"
+                                type="button"
+                                @onclick="@(() => SetWeightUnit(SetUnits.Kg))">
+                            kg
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-3 reps-time-col">
+                <button class="btn dropdown-toggle" type="button" id="@($"repsTimeMenuButton{SetGroup.SetGroupNumber}")" data-bs-toggle="dropdown" aria-expanded="false">
+                    @RepsTimeUnit.GetLabel()
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="@($"repsTimeMenuButton{SetGroup.SetGroupNumber}")">
+                    <li>
+                        <button type="button"
+                                class="dropdown-item"
+                                @onclick="@(() => SetRepsTimeUnit(SetUnits.Reps))">
+                            Reps
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button"
+                                class="dropdown-item"
+                                @onclick="@(() => SetRepsTimeUnit(SetUnits.Time))">
+                            Time
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-1 set-options-col">
+            </div>
+        </div>
+
+        @foreach (var set in SetGroup.Sets)
+        {
+            <WorkoutSetRowEdit Set="set"
+                TargetWeightUnit="TargetWeightUnit" 
+                TargetRepsTimeUnit="TargetRepsTimeUnit"
+                WeightUnit="WeightUnit"
+                RepsTimeUnit="RepsTimeUnit" />
+        }
+    </section>
+
+    <section class="add-set-section">
+        <button class="add-set-btn">
+            ADD SET
+        </button>
+    </section>
+</div>

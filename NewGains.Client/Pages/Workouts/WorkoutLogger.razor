@@ -1,0 +1,22 @@
+﻿@page "/workout/{TemplateId:int?}"
+@using NewGains.Client.Components.Workouts
+
+<section>
+    <h1>@Workout.Name</h1>
+
+    <EditForm Model="@Workout">
+
+        @foreach (var setGroup in Workout.SetGroups)
+        {
+            <WorkoutSetGroupEdit SetGroup="setGroup" />
+        }
+
+        <button type="submit" class="btn btn-primary">
+            Finish Workout
+        </button>
+
+        <a class="btn btn-light" href="/templates">
+            Cancel
+        </a>
+    </EditForm>
+</section>

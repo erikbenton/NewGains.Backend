@@ -1,0 +1,21 @@
+﻿.target-col {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0;
+}
+
+.target-col-option {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 2.5rem;
+}
+
+.target-col-option::after {
+    content: none;
+}
+
+.target-values {
+    display: inline-flex;
+    align-items: center;
+}

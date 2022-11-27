@@ -1,22 +1,27 @@
 ﻿using Microsoft.AspNetCore.Components;
 using NewGains.Client.Enums;
-using NewGains.Core.Entities;
+using NewGains.Client.Models;
 
-namespace NewGains.Client.Components.Templates;
+namespace NewGains.Client.Components.Workouts;
 
-public partial class SetRowEdit
+public partial class WorkoutSetRowEdit
 {
     [Parameter]
-    public TemplateSet Set { get; set; } = default!;
-
-    [Parameter]
-    public EventCallback<int> DeleteSet { get; set; }
+    public WorkoutSet Set { get; set; } = default!;
 
     [Parameter]
     public SetUnits WeightUnit { get; set; } = SetUnits.PercentIntensity;
 
     [Parameter]
     public SetUnits RepsTimeUnit { get; set; } = SetUnits.Reps;
+
+    [Parameter]
+    public SetUnits TargetWeightUnit { get; set; } = SetUnits.PercentIntensity;
+
+    [Parameter]
+    public SetUnits TargetRepsTimeUnit { get; set; } = SetUnits.Reps;
+
+    private double? TargetWeightInKg;
 
     private const double LbsPerKgFactor = 2.205;
 
@@ -27,7 +32,7 @@ public partial class SetRowEdit
     /// Used for converting Lbs to Kg.
     /// </summary>
     public double? WeightInKg
-    { 
+    {
         get
         {
             // Truncate to just 2 digits
@@ -38,13 +43,13 @@ public partial class SetRowEdit
         set
         {
             weightInKg = value;
-            
+
             // Update the Set if the values are different
             // Conversion needed
-            if (Set.WeightInPounds != weightInKg * LbsPerKgFactor)
+            if (Set.LoggedWeightInPounds != weightInKg * LbsPerKgFactor)
             {
-                Set.WeightInPounds = weightInKg * LbsPerKgFactor;
-                WeightInLbs = Set.WeightInPounds;
+                Set.LoggedWeightInPounds = weightInKg * LbsPerKgFactor;
+                WeightInLbs = Set.LoggedWeightInPounds;
             }
         }
     }
@@ -63,7 +68,7 @@ public partial class SetRowEdit
             weightInLbs = value;
 
             // Update the Set
-            Set.WeightInPounds = weightInLbs;
+            Set.LoggedWeightInPounds = weightInLbs;
 
             // Update the Kg Weight if the values are different
             // Conversion needed
@@ -76,6 +81,10 @@ public partial class SetRowEdit
 
     protected override void OnInitialized()
     {
-        WeightInLbs = Set.WeightInPounds;
+        if (Set.TargetWeightInPounds is not null)
+        {
+            var targetKgWeight = Set.TargetWeightInPounds.Value / LbsPerKgFactor;
+            TargetWeightInKg = Math.Floor(targetKgWeight * 100) / 100;
+        }
     }
 }

@@ -15,6 +15,32 @@ public partial class SetGroupDetails
 
     public SetUnits RepsTimeUnit { get; set; } = SetUnits.Reps;
 
+    protected override void OnInitialized()
+    {
+        DetermineUnitsToDisplay();
+    }
+
+    private void DetermineUnitsToDisplay()
+    {
+        // If any times are specified in the Sets
+        var anyTimesSpecified = SetGroup.Sets.Any(set => set.TimeInSeconds is not null);
+        if (anyTimesSpecified)
+        {
+            // Display the time
+            RepsTimeUnit = SetUnits.Time;
+        }
+
+        var anyWeightsSpecified = SetGroup.Sets.Any(set => set.WeightInPounds is not null);
+        var anyPercentIntensitiesSpecified = SetGroup.Sets.Any(set => set.PercentIntensity is not null);
+
+        // If any weights are specified AND there are NO % PRs specified
+        if (anyWeightsSpecified && !anyPercentIntensitiesSpecified)
+        {
+            // Display weights
+            WeightUnit = SetUnits.Lbs;
+        }
+    }
+
     private void SetWeightUnit(SetUnits weightUnit)
     {
         if (weightUnit == SetUnits.Time || weightUnit == SetUnits.Reps)

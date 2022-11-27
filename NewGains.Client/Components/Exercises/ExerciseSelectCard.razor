@@ -1,5 +1,5 @@
-﻿<li class="exercise-select-card">
-    <h6 class="exercise-card-header" @onclick="@(async () => await HandleClick(Exercise))">
+﻿<li class="exercise-select-card" @onclick="@(async () => await HandleClick(Exercise))">
+    <h6 class="exercise-card-header">
         <span class="exercise-card-name">@Exercise.Name</span>
         @if (!string.Equals(Exercise.Category, "Bodyweight")
         && !string.Equals(Exercise.Category, "Cardio"))
