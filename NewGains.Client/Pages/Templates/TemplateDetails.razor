@@ -27,9 +27,11 @@ else
             <SetGroupDetails SetGroup="setGroup" />
         }
 
-        <a class="btn btn-primary" href="@($"/templates/edit/{TemplateId}")">
-            Edit
-        </a>
+        <AuthorizeView>
+            <a class="btn btn-primary" href="@($"/templates/edit/{TemplateId}")">
+                Edit
+            </a>
+        </AuthorizeView>
 
         <a class="btn btn-light" href="/templates">
             Back

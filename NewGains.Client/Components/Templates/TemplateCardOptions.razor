@@ -3,8 +3,11 @@
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-        <li><a class="dropdown-item" href="@($"/templates/edit/{TemplateId}")">Edit</a></li>
-        <li><a class="dropdown-item" href="#">Duplicate</a></li>
-        <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+        <li><a class="dropdown-item" href="@($"/templates/{TemplateId}")">View</a></li>
+        <AuthorizeView>
+            <li><a class="dropdown-item" href="@($"/templates/edit/{TemplateId}")">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Duplicate</a></li>
+            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+        </AuthorizeView>
     </ul>
 </div>

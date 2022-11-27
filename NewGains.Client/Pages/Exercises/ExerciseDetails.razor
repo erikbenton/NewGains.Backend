@@ -2,7 +2,6 @@
 
 <PageTitle>Exercise Details</PageTitle>
 
-
 @if (Exercise is null)
 {
     <h1 class="loading-element">Exercise Details</h1>
@@ -24,6 +23,10 @@ else
             </ol>
         }
     </div>
-    <button class="btn btn-primary me-1" @onclick="@(() => NavigateToExerciseEdit(Exercise.Id))">Edit</button>
+
+    <AuthorizeView>
+        <button class="btn btn-primary me-1" @onclick="@(() => NavigateToExerciseEdit(Exercise.Id))">Edit</button>
+    </AuthorizeView>
+    
     <a class="btn btn-light" href="/exercises">Back</a>
 }

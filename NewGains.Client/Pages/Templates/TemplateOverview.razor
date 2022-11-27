@@ -11,7 +11,9 @@
 }
 else
 {
-    <a class="btn btn-primary" href="/templates/edit">Add Template</a>
+    <AuthorizeView>
+        <a class="btn btn-primary" href="/templates/edit">Add Template</a>
+    </AuthorizeView>
     <ol class="templates-list">
        @foreach (var template in Templates)
        {

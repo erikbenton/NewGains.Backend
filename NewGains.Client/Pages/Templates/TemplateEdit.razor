@@ -3,6 +3,8 @@
 @using NewGains.Client.Components.Exercises
 @using NewGains.Client.Components.Templates
 
+@attribute [Authorize]
+
 <PageTitle>Template Edit</PageTitle>
 
 @if (TemplateId.HasValue && Template.Id == 0)

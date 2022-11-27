@@ -11,7 +11,10 @@
 }
 else
 {
-    <a class="btn btn-primary" href="/exercises/edit">Add Exercise</a>
+    <AuthorizeView>
+        <a class="btn btn-primary" href="/exercises/edit">Add Exercise</a>
+    </AuthorizeView>
+
     <ol class="exercises-list">
        @foreach (var exercise in Exercises)
        {
