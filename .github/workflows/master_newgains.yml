@@ -22,6 +22,9 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
+      - name: Inspecting files
+        run: dir ${{env.DOTNET_ROOT}}/NewGains.API
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
