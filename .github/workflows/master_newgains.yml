@@ -33,7 +33,7 @@ jobs:
           ConnectionStrings.NewGainsDBContext: ${{ secrets.CONNECTION_STRING }}
 
       - name: What's in the settings
-        run: echo "$(<NewGains.API/appsettings.json)"
+        run: cat NewGains.API/appsettings.json
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
