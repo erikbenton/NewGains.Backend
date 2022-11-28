@@ -10,6 +10,12 @@ public partial class WorkoutSetRowEdit
     public WorkoutSet Set { get; set; } = default!;
 
     [Parameter]
+    public bool IsCurrentSet { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<int> DeleteSet { get; set; } = default!;
+
+    [Parameter]
     public SetUnits WeightUnit { get; set; } = SetUnits.PercentIntensity;
 
     [Parameter]

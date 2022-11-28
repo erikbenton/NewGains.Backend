@@ -142,15 +142,17 @@
         @foreach (var set in SetGroup.Sets)
         {
             <WorkoutSetRowEdit Set="set"
+                DeleteSet="DeleteSet"
                 TargetWeightUnit="TargetWeightUnit" 
                 TargetRepsTimeUnit="TargetRepsTimeUnit"
                 WeightUnit="WeightUnit"
                 RepsTimeUnit="RepsTimeUnit" />
         }
+
     </section>
 
     <section class="add-set-section">
-        <button class="add-set-btn">
+        <button class="add-set-btn" @onclick="AddSet">
             ADD SET
         </button>
     </section>

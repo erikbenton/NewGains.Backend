@@ -11,9 +11,11 @@ else
     <section>
         <h1>@Template.Name</h1>
 
-        <a class="btn btn-success" href="@($"/workout/{TemplateId}")">
-            Workout!
-        </a>
+        <AuthorizeView>
+            <a class="btn btn-success" href="@($"/workout/{TemplateId}")">
+                Workout!
+            </a>
+        </AuthorizeView>
 
         <div class="row mb-3">
             <label for="templateName" class="col-md-3">Description: </label>

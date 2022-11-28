@@ -67,7 +67,7 @@
     </div>
 
     <div class="col-1 set-options-col">
-        <button class="set-options-btn text-danger">
+        <button type="button" class="set-options-btn text-danger" @onclick="@(async () => await DeleteSet.InvokeAsync(Set.SetNumber))">
             <i class="fa-solid fa-trash"></i>
         </button>
     </div>

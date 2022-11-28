@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using NewGains.Client.Enums;
 using NewGains.Client.Models;
+using NewGains.Core.Entities;
 
 namespace NewGains.Client.Components.Workouts;
 
@@ -16,6 +17,27 @@ public partial class WorkoutSetGroupEdit
     public SetUnits TargetWeightUnit { get; set; } = SetUnits.PercentIntensity;
 
     public SetUnits TargetRepsTimeUnit { get; set; } = SetUnits.Reps;
+
+    public void DeleteSet(int setNumber)
+    {
+        // Filter out set
+        SetGroup.Sets = SetGroup.Sets
+            .Where(set => set.SetNumber != setNumber)
+            .ToList();
+
+        // Re-number the sets
+        for (int i = setNumber - 1; i < SetGroup.Sets.Count; i++)
+        {
+            SetGroup.Sets[i].SetNumber = i+1;
+        }
+    }
+
+    private void AddSet()
+    {
+        WorkoutSet newSet = new(SetGroup.Id, SetGroup.Sets.Count() + 1, new TemplateSet());
+        SetGroup.Sets.Add(newSet);
+    }
+
 
     private void SetWeightUnit(SetUnits weightUnit)
     {
