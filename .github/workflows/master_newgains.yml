@@ -25,14 +25,8 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Inspecting files in .NET root directory
-        run: dir ${{env.DOTNET_ROOT}}
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-      - name: Inspecting files in .NET root directory
-        run: dir ${{env.DOTNET_ROOT}}/myapp
 
       - name: Substitute GitHub Secrets into appsettings
         uses: microsoft/variable-substitution@v1 
