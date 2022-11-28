@@ -22,10 +22,13 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
+      - name: Inspecting files in directory
+        run: dir
+
       - name: Substitute GitHub Secrets into appsettings
         uses: microsoft/variable-substitution@v1 
         with:
-          files: '${{env.DOTNET_ROOT}}\myapp\appsettings.json'
+          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.json'
         env:
           ConnectionStrings.NewGainsDBContext: ${{ secrets.CONNECTION_STRING }}
 
