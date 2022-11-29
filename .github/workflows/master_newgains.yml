@@ -22,18 +22,12 @@ jobs:
           dotnet-version: '6.0.x'
           include-prerelease: true
 
-      - name: Inspecting files
-        run: dir NewGains.API
-
       - name: Substitute GitHub Secrets into appsettings
         uses: microsoft/variable-substitution@v1 
         with:
           files: 'NewGains.API/appsettings.json'
         env:
           ConnectionStrings.NewGainsDBContext: ${{ secrets.CONNECTION_STRING }}
-
-      - name: What's in the settings
-        run: cat NewGains.API/appsettings.json
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
