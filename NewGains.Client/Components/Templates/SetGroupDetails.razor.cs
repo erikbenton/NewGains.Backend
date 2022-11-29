@@ -47,7 +47,6 @@ public partial class SetGroupDetails
             return;
 
         WeightUnit = weightUnit;
-        StateHasChanged();
     }
 
     private void SetRepsTimeUnit(SetUnits repsTimeUnit)
@@ -56,6 +55,5 @@ public partial class SetGroupDetails
             return;
 
         RepsTimeUnit = repsTimeUnit;
-        StateHasChanged();
     }
 }

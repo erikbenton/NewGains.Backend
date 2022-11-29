@@ -45,7 +45,6 @@ public partial class WorkoutSetGroupEdit
             return;
 
         WeightUnit = weightUnit;
-        StateHasChanged();
     }
 
     private void SetRepsTimeUnit(SetUnits repsTimeUnit)
@@ -54,7 +53,6 @@ public partial class WorkoutSetGroupEdit
             return;
 
         RepsTimeUnit = repsTimeUnit;
-        StateHasChanged();
     }
 
     private void SetTargetWeightUnit(SetUnits weightUnit)
@@ -63,7 +61,6 @@ public partial class WorkoutSetGroupEdit
             return;
 
         TargetWeightUnit = weightUnit;
-        StateHasChanged();
     }
 
     private void SetTargetRepsTimeUnit(SetUnits repsTimeUnit)
@@ -72,6 +69,5 @@ public partial class WorkoutSetGroupEdit
             return;
 
         TargetRepsTimeUnit = repsTimeUnit;
-        StateHasChanged();
     }
 }

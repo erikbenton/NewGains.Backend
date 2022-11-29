@@ -28,7 +28,6 @@ public partial class TemplateSetGroupEdit
             return;
 
         WeightUnit = weightUnit;
-        StateHasChanged();
     }
 
     private void SetRepsTimeUnit(SetUnits repsTimeUnit)
@@ -37,7 +36,6 @@ public partial class TemplateSetGroupEdit
             return;
 
         RepsTimeUnit = repsTimeUnit;
-        StateHasChanged();
     }
 
     private void AddEmptySet()
