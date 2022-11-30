@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using NewGains.Client.Services;
 using NewGains.Core.Entities;
 using NewGains.DataTransfer.Exercises;
@@ -15,6 +16,9 @@ public partial class TemplateEdit
     [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
 
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; } = default!;
+
     [Parameter]
     public int? TemplateId { get; set; }
 
@@ -23,6 +27,8 @@ public partial class TemplateEdit
     public bool SelectingExercises { get; set; } = false;
 
     public string OriginalName { get; set; } = "New";
+
+    public string DescriptionTextAreaId = "templateDescription";
 
     protected override async Task OnInitializedAsync()
     {
@@ -37,6 +43,13 @@ public partial class TemplateEdit
                 OriginalName = Template.Name;
             }
         }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync(
+            "formUtilities.resizeTextArea",
+            DescriptionTextAreaId);
     }
 
     private void SelectExercises()
