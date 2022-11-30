@@ -7,6 +7,8 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+builder.Logging.SetMinimumLevel(LogLevel.None);
+
 builder.Services.AddHttpClient<IExerciseDataService, ExerciseDataService>(
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
