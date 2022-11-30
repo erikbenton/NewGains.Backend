@@ -78,3 +78,8 @@ a, .btn-link {
     display: flex;
     justify-content: center;
 }
+
+.vertical-nav-item {
+    flex-direction: column;
+    line-height: inherit !important;
+}
