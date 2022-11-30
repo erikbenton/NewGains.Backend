@@ -28,7 +28,7 @@ public partial class TemplateEdit
 
     public string OriginalName { get; set; } = "New";
 
-    public string DescriptionTextAreaId = "templateDescription";
+    public const string DescriptionTextAreaId = "templateDescription";
 
     protected override async Task OnInitializedAsync()
     {
