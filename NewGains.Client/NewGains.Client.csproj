@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Include="Components\Exercises\ExerciseCard.razor" />
+    <None Include="wwwroot\js\formUtilities.js" />
   </ItemGroup>
 
   <ItemGroup>

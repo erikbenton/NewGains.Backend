@@ -1,5 +1,10 @@
 ﻿<div class="me-auto flex-fill d-flex ps-2">
-    <textarea class="flex-fill" @bind-value="@Instruction.Text" @bind-value:event="onchange"></textarea>
+    <textarea
+        class="flex-fill"
+        id="@TextAreaId"
+        @bind-value="@Instruction.Text" 
+        @bind-value:event="onchange">
+    </textarea>
 </div>
 <div class="ps-2">
     <InstructionEditOptions
