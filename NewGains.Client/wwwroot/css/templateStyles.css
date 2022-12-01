@@ -1,9 +1,9 @@
 ﻿.template-card {
-    margin: 5px auto;
+    margin: 0.5rem auto;
     border-radius: 5px;
     background-color: white;
     border: 1px lightgray solid;
-    padding: 5px;
+    padding: 0.5rem 0.4rem;
 }
 
 .templates-list-header {
@@ -67,3 +67,30 @@
     margin: 0 0.25rem;
     font-size: 1rem;
 }
+
+.template-quickstart-text {
+    margin: 0;
+}
+
+.start-empty-workout-btn {
+    display: block;
+    width: 100%;
+    margin: 0.5rem auto;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+.my-templates-header {
+    display: flex;
+}
+
+.template-quickstart-text, .my-templates-title {
+    color: gray;
+    font-size: 1.1rem;
+}
+
+.add-template-btn {
+    margin-left: auto;
+    color: black;
+}
+

@@ -3,7 +3,12 @@
 
 <PageTitle>Workout Templates</PageTitle>
 
-<h1>Templates</h1>
+<h1>Workout</h1>
+
+<div class="template-quickstart">
+    <p class="template-quickstart-text">Quick start</p>
+    <button class="btn btn-primary start-empty-workout-btn">Start an empty workout</button>
+</div>
 
 @if (Templates is null)
 {
@@ -12,7 +17,10 @@
 else
 {
     <AuthorizeView>
-        <a class="btn btn-primary" href="/templates/edit">Add Template</a>
+        <div class="my-templates-header">
+            <span class="my-templates-title">My templates</span>
+            <a class="add-template-btn" href="/templates/edit"><i class="fa-solid fa-plus"></i></a>
+        </div>
     </AuthorizeView>
     <ol class="templates-list">
        @foreach (var template in Templates)
