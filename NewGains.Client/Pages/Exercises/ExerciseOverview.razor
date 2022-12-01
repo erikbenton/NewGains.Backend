@@ -3,17 +3,21 @@
 
 <PageTitle>Exercises</PageTitle>
 
-<h1>Exercises</h1>
-
 @if (Exercises is null)
 {
+    <h1 class="exercise-overview-header">Exercises</h1>
+
     <p class="loading-element"><i class="fa-solid fa-spinner fa-spin"></i></p>
 }
 else
 {
-    <AuthorizeView>
-        <a class="btn btn-primary" href="/exercises/edit">Add Exercise</a>
-    </AuthorizeView>
+    <div class="exercise-overview-title">
+        <h1 class="exercise-overview-header">Exercises</h1>
+        <AuthorizeView>
+            <a class="btn btn-primary add-exercises-btn" href="/exercises/edit">Add Exercise</a>
+        </AuthorizeView>
+    </div>
+
 
     <ol class="exercises-list">
        @foreach (var exercise in Exercises)

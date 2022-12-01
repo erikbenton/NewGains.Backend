@@ -10,19 +10,17 @@
 else
 {
     <h1>@Exercise.Name - @Exercise.Category</h1>
-    <div class="exercise-details-bodypart">@Exercise.BodyPart</div>
-    <div>
-        @if (Exercise.Instructions.Count() > 0)
-        {
-            <div class="exercise-details-instruction-header">Instructions</div>
-            <ol class="exercise-details-instruction-list">
-                @foreach (var instruction in Exercise.Instructions)
-                {
-                    <li class="exercise-details-instruction">@instruction.Text</li>
-                }
-            </ol>
-        }
-    </div>
+    <h2 class="exercise-details-bodypart">@Exercise.BodyPart</h2>
+    @if (Exercise.Instructions.Count() > 0)
+    {
+        <h2 class="exercise-details-instruction-header">Instructions</h2>
+        <ol class="exercise-details-instruction-list">
+            @foreach (var instruction in Exercise.Instructions)
+            {
+                <li class="exercise-details-instruction">@instruction.Text</li>
+            }
+        </ol>
+    }
 
     <AuthorizeView>
         <button class="btn btn-primary me-1" @onclick="@(() => NavigateToExerciseEdit(Exercise.Id))">Edit</button>

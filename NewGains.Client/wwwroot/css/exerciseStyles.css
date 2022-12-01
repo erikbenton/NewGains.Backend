@@ -1,4 +1,25 @@
-﻿.exercises-list, .exercise-card-list, .instruction-edit-list {
+﻿.exercise-overview-title {
+    display: flex;
+    align-items: center;
+}
+
+.exercise-overview-header {
+    margin: 0;
+}
+
+.add-exercises-btn {
+    margin-left: auto;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    background-color: dodgerblue;
+    border: none;
+}
+
+.add-exercises-btn:hover {
+    background-color: rgb(23, 118, 212);
+}
+
+.exercises-list, .exercise-card-list, .instruction-edit-list {
     padding: 0;
     margin: 0;
 }
@@ -20,10 +41,18 @@
     justify-content: center;
 }
 
+.exercise-details-instruction-header {
+    font-size: 1.3rem;
+}
+
 .exercise-card-name {
     color: black;
     font-size: 1.25rem;
     cursor: pointer;
+}
+
+.exercise-details-bodypart {
+    font-size: 1.5rem;
 }
 
 .exercise-card-dash {
@@ -32,8 +61,9 @@
 }
 
 .exercise-card-category {
-    font-size: 1rem;
+    font-size: 1.25rem;
     display: inline-flex;
+    color: gray;
 }
 
 .exercise-card-options {
