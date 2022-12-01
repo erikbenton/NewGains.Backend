@@ -47,8 +47,8 @@
             <label class="form-label">Instructions</label>
             <ol class="list-group-numbered instruction-edit-list">
                 @foreach (var instruction in Exercise.Instructions)
-                {       
-                    <li class="list-group-item d-flex pb-2 pe-2">
+                {
+                    <li class="list-group-item d-flex pb-2 pe-2 instruction-edit-item">
                         <InstructionEditCard
                             Instruction="@instruction"
                             ShiftInstructionUp="@ShiftInstructionUp"

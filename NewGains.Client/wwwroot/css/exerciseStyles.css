@@ -119,6 +119,18 @@
     margin-left: auto;
 }
 
+.instruction-textarea {
+    border: 1px #a5a5a5 solid;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+}
+
+.instruction-edit-item {
+    border: 1px solid lightgray !important;
+    margin-bottom: 0.5rem;
+    border-radius: 8px !important;
+}
+
 .loading-element {
     animation-duration: 1s;
     animation-name: animate-fade;
