@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using NewGains.Client;
@@ -20,5 +21,7 @@ builder.Services.AddOidcAuthentication(options =>
     builder.Configuration.Bind("Auth0", options.ProviderOptions);
     options.ProviderOptions.ResponseType = "code";
 });
+
+builder.Services.AddBlazoredLocalStorage();
 
 await builder.Build().RunAsync();
