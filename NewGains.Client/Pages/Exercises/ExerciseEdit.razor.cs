@@ -19,7 +19,7 @@ public partial class ExerciseEdit
     [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
 
-    public Exercise Exercise { get; set; } = new();
+    public Exercise? Exercise { get; set; }
 
     public string OriginalName { get; set; } = "New";
 
@@ -42,10 +42,17 @@ public partial class ExerciseEdit
                 OriginalName = Exercise.Name;
             }
         }
+
+        if (Exercise is null)
+        {
+            Exercise = new();
+        }
     }
 
     private void AddInstruction()
     {
+        if (Exercise is null) return;
+
         var instructions = Exercise.Instructions.ToList();
         instructions.Add(new Instruction()
         {
@@ -58,6 +65,8 @@ public partial class ExerciseEdit
 
     public void DeleteInstruction(int deleteStepNumber)
     {
+        if (Exercise is null) return;
+
         var instructions = Exercise.Instructions
             .Where(i => i.StepNumber != deleteStepNumber)
             .ToList();
@@ -72,6 +81,8 @@ public partial class ExerciseEdit
 
     public void ShiftInstructionDown(int instructionStepNumber)
     {
+        if (Exercise is null) return;
+
         if (instructionStepNumber < 1) return;
         if (instructionStepNumber > Exercise.Instructions.Count() - 1) return;
 
@@ -91,6 +102,8 @@ public partial class ExerciseEdit
 
     public void ShiftInstructionUp(int stepNumber)
     {
+        if (Exercise is null) return;
+
         if (stepNumber < 2) return;
         if (stepNumber > Exercise.Instructions.Count()) return;
 
@@ -110,6 +123,8 @@ public partial class ExerciseEdit
 
     public void InsertInstructionBelow(int stepNumber)
     {
+        if (Exercise is null) return;
+
         if (stepNumber < 1) return;
         if (stepNumber > Exercise.Instructions.Count()) return;
 
@@ -127,6 +142,8 @@ public partial class ExerciseEdit
 
     private async Task HandleValidSubmit()
     {
+        if (Exercise is null) return;
+
         if (ExerciseId.HasValue)
         {
             ExerciseUpdateDto exerciseUpdateDto = ExerciseMapper.MapToExerciseUpdateDto(Exercise);
@@ -155,6 +172,8 @@ public partial class ExerciseEdit
 
     private async Task DeleteExercise(int exerciseId)
     {
+        if (Exercise is null) return;
+
         var response = await ExerciseDataService.DeleteExercise(exerciseId);
 
         if (response.IsSuccessStatusCode)
