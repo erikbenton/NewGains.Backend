@@ -11,10 +11,13 @@ else
     <section>
         <h1 class="template-details-name">@Template.Name</h1>
 
-        <div class="row mb-3">
-            <label for="templateName" class="template-details-description-label">Description: </label>
-            <p class="template-details-description-text">@Template.Description</p>
-        </div>
+        @if (!string.IsNullOrEmpty(Template.Description))
+        {
+            <div class="row mb-3">
+                <label for="templateName" class="template-details-description-label">Description: </label>
+                <p class="template-details-description-text">@Template.Description</p>
+            </div>
+        }
 
         <AuthorizeView>
             <a class="btn btn-primary start-workout-btn" href="@($"/workout/{TemplateId}")">
