@@ -33,25 +33,25 @@ public partial class SetRowDetails
         switch (RepsTimeUnit)
         {
             case SetUnits.PercentIntensity:
-                RepsTimeAmount = "n/a";
+                RepsTimeAmount = "?";
                 break;
 
             case SetUnits.Lbs:
-                RepsTimeAmount = "n/a";
+                RepsTimeAmount = "?";
                 break;
 
             case SetUnits.Kg:
-                RepsTimeAmount = "n/a";
+                RepsTimeAmount = "?";
                 break;
 
             case SetUnits.Reps:
                 if (Set.Reps is not null)
                 {
-                    RepsTimeAmount = Set.Reps.ToString() ?? "n/a";
+                    RepsTimeAmount = Set.Reps.ToString() ?? "?";
                 }
                 else
                 {
-                    RepsTimeAmount = "n/a";
+                    RepsTimeAmount = "?";
                 }
                 break;
 
@@ -63,12 +63,12 @@ public partial class SetRowDetails
                 }
                 else
                 {
-                    RepsTimeAmount = "n/a";
+                    RepsTimeAmount = "?";
                 }
                 break;
 
             default:
-                RepsTimeAmount = "n/a";
+                RepsTimeAmount = "?";
                 break;
         }
     }
@@ -80,46 +80,46 @@ public partial class SetRowDetails
             case SetUnits.PercentIntensity:
                 if (Set.PercentIntensity is not null)
                 {
-                    WeightAmount = Set.PercentIntensity.ToString() ?? "n/a";
+                    WeightAmount = Set.PercentIntensity.ToString() ?? "?";
                 }
                 else
                 {
-                    WeightAmount = "n/a";
+                    WeightAmount = "?";
                 }
                 break;
 
             case SetUnits.Lbs:
                 if (Set.WeightInPounds is not null)
                 {
-                    WeightAmount = Set.WeightInPounds.ToString() ?? "n/a";
+                    WeightAmount = Set.WeightInPounds.ToString() ?? "?";
                 }
                 else
                 {
-                    WeightAmount = "n/a";
+                    WeightAmount = "?";
                 }
                 break;
 
             case SetUnits.Kg:
                 if (Set.WeightInPounds is not null)
                 {
-                    WeightAmount = (Set.WeightInPounds / 2.205).ToString() ?? "n/a";
+                    WeightAmount = (Set.WeightInPounds / 2.205).ToString() ?? "?";
                 }
                 else
                 {
-                    WeightAmount = "n/a";
+                    WeightAmount = "?";
                 }
                 break;
 
             case SetUnits.Reps:
-                WeightAmount = "n/a";
+                WeightAmount = "?";
                 break;
 
             case SetUnits.Time:
-                WeightAmount = "n/a";
+                WeightAmount = "?";
                 break;
 
             default:
-                WeightAmount = "n/a";
+                WeightAmount = "?";
                 break;
         }
 

@@ -9,20 +9,18 @@
 else
 {
     <section>
-        <h1>@Template.Name</h1>
-
-        <AuthorizeView>
-            <a class="btn btn-success" href="@($"/workout/{TemplateId}")">
-                Workout!
-            </a>
-        </AuthorizeView>
+        <h1 class="template-details-name">@Template.Name</h1>
 
         <div class="row mb-3">
-            <label for="templateName" class="col-md-3">Description: </label>
-            <div class="col-md-8">
-                <p>@Template.Description</p>
-            </div>
+            <label for="templateName" class="template-details-description-label">Description: </label>
+            <p class="template-details-description-text">@Template.Description</p>
         </div>
+
+        <AuthorizeView>
+            <a class="btn btn-primary start-workout-btn" href="@($"/workout/{TemplateId}")">
+                Start Workout
+            </a>
+        </AuthorizeView>
 
         @foreach (var setGroup in Template.SetGroups)
         {

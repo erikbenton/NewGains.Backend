@@ -94,3 +94,18 @@
     color: black;
 }
 
+.start-workout-btn {
+    width: 100%;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+    text-shadow: 0px 0px 1px black;
+    margin-bottom: 0.5rem;
+}
+
+.template-details-description-label {
+    font-size: 1.1rem;
+}
+
+.template-details-description-text {
+    margin: 0;
+}
